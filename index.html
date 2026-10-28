@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123c32">
+<title>مكلا هوم | العقارات والخدمات</title>
+<style>
+:root{--green:#123c32;--gold:#d8b46a;--bg:#f5f6f2;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:#202820;line-height:1.8}
+header{background:var(--green);color:white;padding:18px 16px}
+nav,.wrap{max-width:1000px;margin:auto}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:23px;font-weight:800;color:var(--gold)}
+nav a{color:white;text-decoration:none}
+.hero{background:var(--green);color:white;padding:25px 18px 38px}
+.hero h1{font-size:29px;line-height:1.5;margin:0 0 8px}
+.hero p{margin:0 0 18px;color:#e0e9e4}
+.search{background:white;border-radius:14px;padding:14px;color:#333}
+input,select{width:100%;padding:13px;margin:5px 0;border:1px solid #ddd;border-radius:9px;font:inherit;background:white}
+button,.btn{display:inline-block;background:var(--gold);color:#192b23;padding:12px 18px;border:0;border-radius:9px;text-decoration:none;font:inherit;font-weight:700;cursor:pointer}
+.search button{width:100%;margin-top:8px}
+.wrap{padding:22px 16px}
+h2{font-size:22px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.card{background:white;border-radius:14px;padding:17px;border:1px solid #e7e9e2}
+.symbol{font-size:27px}
+.card h3{margin:5px 0;font-size:17px}
+.card p{margin:4px 0;color:#626a62;font-size:14px}
+.action{display:block;text-align:center;background:var(--green);color:white;padding:13px;border-radius:10px;text-decoration:none;margin-top:12px}
+.note{font-size:13px;color:#657067}
+footer{text-align:center;background:#102c25;color:#eee;padding:22px 15px;margin-top:20px}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">مكلا هوم</div>
+<a href="#services">الخدمات</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="wrap">
+<h1>عقارك ومشروعك في مكان واحد</h1>
+<p>ابحث عن الأراضي والعقارات والخدمات الهندسية في المكلا وحضرموت.</p>
+<div class="search">
+<label for="kind">ماذا تبحث عنه؟</label>
+<select id="kind">
+<option value="all">جميع العقارات والخدمات</option>
+<option value="land">أراضٍ</option>
+<option value="home">منازل وشقق</option>
+<option value="engineering">خدمات هندسية ومقاولات</option>
+</select>
+<label for="area">المنطقة</label>
+<select id="area">
+<option value="all">جميع المناطق</option>
+<option>الديس</option>
+<option>الفوة</option>
+<option>الستين</option>
+<option>مناطق أخرى</option>
+</select>
+<button onclick="searchItems()">ابحث الآن</button>
+<p id="searchMessage" class="note" aria-live="polite"></p>
+</div>
+</div>
+</section>
+
+<main class="wrap">
+<section>
+<h2>استكشف مكلا هوم</h2>
+<div class="grid">
+<div class="card"><div class="symbol">🏞️</div><h3>الأراضي</h3><p>ابحث عن أرض تناسب احتياجك.</p></div>
+<div class="card"><div class="symbol">🏠</div><h3>العقارات</h3><p>منازل وشقق وعقارات متنوعة.</p></div>
+<div class="card"><div class="symbol">🏗️</div><h3>المقاولات</h3><p>مشاريع وتنفيذ وأعمال بناء.</p></div>
+<div class="card"><div class="symbol">📐</div><h3>الخدمات الهندسية</h3><p>مهندسون ومكاتب واستشارات.</p></div>
+</div>
+</section>
+
+<section id="services" style="margin-top:28px">
+<h2>هل تريد عرض عقارك أو خدمتك؟</h2>
+<div class="card">
+<p>ابدأ بتسجيل بياناتك تمهيدًا لإضافة إعلانك إلى المنصة.</p>
+<p class="note">سيتم تفعيل التسجيل والإعلانات بعد ربط الواجهة بقاعدة البيانات.</p>
+<a class="action" href="mailto:">التواصل مع إدارة المنصة</a>
+</div>
+</section>
+</main>
+
+<footer>
+<strong>مكلا هوم</strong>
+<p>عقارك ومشروعك في مكان واحد بسعر مناسب وجودة وضمان</p>
+</footer>
+
+<script>
+function searchItems(){
+  document.getElementById('searchMessage').textContent =
+    'واجهة البحث جاهزة للتصميم؛ ستظهر نتائج العقارات بعد ربط قاعدة البيانات.';
+}
+</script>
+</body>
+</html>
