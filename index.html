@@ -6,99 +6,452 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#123c32">
 <title>مكلا هوم | العقارات والخدمات</title>
+
 <style>
-:root{--green:#123c32;--gold:#d8b46a;--bg:#f5f6f2;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:#202820;line-height:1.8}
-header{background:var(--green);color:white;padding:18px 16px}
-nav,.wrap{max-width:1000px;margin:auto}
-nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:23px;font-weight:800;color:var(--gold)}
-nav a{color:white;text-decoration:none}
-.hero{background:var(--green);color:white;padding:25px 18px 38px}
-.hero h1{font-size:29px;line-height:1.5;margin:0 0 8px}
-.hero p{margin:0 0 18px;color:#e0e9e4}
-.search{background:white;border-radius:14px;padding:14px;color:#333}
-input,select{width:100%;padding:13px;margin:5px 0;border:1px solid #ddd;border-radius:9px;font:inherit;background:white}
-button,.btn{display:inline-block;background:var(--gold);color:#192b23;padding:12px 18px;border:0;border-radius:9px;text-decoration:none;font:inherit;font-weight:700;cursor:pointer}
-.search button{width:100%;margin-top:8px}
-.wrap{padding:22px 16px}
-h2{font-size:22px;margin:0 0 14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
-.card{background:white;border-radius:14px;padding:17px;border:1px solid #e7e9e2}
-.symbol{font-size:27px}
-.card h3{margin:5px 0;font-size:17px}
-.card p{margin:4px 0;color:#626a62;font-size:14px}
-.action{display:block;text-align:center;background:var(--green);color:white;padding:13px;border-radius:10px;text-decoration:none;margin-top:12px}
-.note{font-size:13px;color:#657067}
-footer{text-align:center;background:#102c25;color:#eee;padding:22px 15px;margin-top:20px}
+:root {
+  --green:#123c32;
+  --gold:#d8b46a;
+  --bg:#f5f6f2;
+  --white:#fff;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family:system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:#202820;
+  line-height:1.8;
+}
+header {
+  background:var(--green);
+  color:white;
+  padding:18px 16px;
+}
+nav,.wrap {
+  max-width:1000px;
+  margin:auto;
+}
+nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.logo {
+  font-size:23px;
+  font-weight:800;
+  color:var(--gold);
+}
+nav a { color:white; text-decoration:none; }
+.hero {
+  background:var(--green);
+  color:white;
+  padding:25px 18px 38px;
+}
+.hero h1 { font-size:29px; line-height:1.5; margin:0 0 8px; }
+.hero p { margin:0 0 18px; color:#e0e9e4; }
+.search {
+  background:white;
+  border-radius:14px;
+  padding:14px;
+  color:#333;
+}
+label { display:block; font-weight:600; }
+select {
+  width:100%;
+  padding:13px;
+  margin:5px 0;
+  border:1px solid #ddd;
+  border-radius:9px;
+  font:inherit;
+  background:white;
+}
+button,.btn {
+  display:inline-block;
+  background:var(--gold);
+  color:#192b23;
+  padding:12px 18px;
+  border:0;
+  border-radius:9px;
+  text-decoration:none;
+  font:inherit;
+  font-weight:700;
+  cursor:pointer;
+}
+.search button { width:100%; margin-top:8px; }
+.wrap { padding:22px 16px; }
+h2 { font-size:22px; margin:0 0 14px; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:12px;
+}
+.card {
+  background:white;
+  border-radius:14px;
+  padding:17px;
+  border:1px solid #e7e9e2;
+  min-width:0;
+}
+.symbol { font-size:27px; }
+.card h3 { margin:5px 0; font-size:17px; }
+.card p { margin:4px 0; color:#626a62; font-size:14px; }
+.action {
+  display:block;
+  text-align:center;
+  background:var(--green);
+  color:white;
+  padding:11px;
+  border-radius:10px;
+  text-decoration:none;
+  margin-top:12px;
+}
+.note { font-size:13px; color:#657067; }
+#searchMessage { margin:10px 0 0; }
+.listing-image {
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:8px;
+  background:#eee;
+}
+.price { color:var(--green)!important; font-weight:800; font-size:17px!important; }
+.status { color:#657067; font-size:13px; }
+footer {
+  text-align:center;
+  background:#102c25;
+  color:#eee;
+  padding:22px 15px;
+  margin-top:20px;
+}
+footer p { margin-bottom:0; }
 </style>
 </head>
+
 <body>
 <header>
-<nav>
-<div class="logo">مكلا هوم</div>
-<a href="#services">الخدمات</a>
-</nav>
+  <nav>
+    <div class="logo">مكلا هوم</div>
+    <a href="#services">الخدمات</a>
+  </nav>
 </header>
 
 <section class="hero">
-<div class="wrap">
-<h1>عقارك ومشروعك في مكان واحد</h1>
-<p>ابحث عن الأراضي والعقارات والخدمات الهندسية في المكلا وحضرموت.</p>
-<div class="search">
-<label for="kind">ماذا تبحث عنه؟</label>
-<select id="kind">
-<option value="all">جميع العقارات والخدمات</option>
-<option value="land">أراضٍ</option>
-<option value="home">منازل وشقق</option>
-<option value="engineering">خدمات هندسية ومقاولات</option>
-</select>
-<label for="area">المنطقة</label>
-<select id="area">
-<option value="all">جميع المناطق</option>
-<option>الديس</option>
-<option>الفوة</option>
-<option>الستين</option>
-<option>مناطق أخرى</option>
-</select>
-<button onclick="searchItems()">ابحث الآن</button>
-<p id="searchMessage" class="note" aria-live="polite"></p>
-</div>
-</div>
+  <div class="wrap">
+    <h1>عقارك ومشروعك في مكان واحد</h1>
+    <p>ابحث عن الأراضي والعقارات والخدمات الهندسية في المكلا وحضرموت.</p>
+
+    <div class="search">
+      <label for="kind">ماذا تبحث عنه؟</label>
+      <select id="kind">
+        <option value="all">جميع العقارات والخدمات</option>
+        <option value="land">أراضٍ</option>
+        <option value="home">منازل وشقق</option>
+        <option value="engineering">خدمات هندسية ومقاولات</option>
+      </select>
+
+      <label for="area">المنطقة</label>
+      <select id="area">
+        <option value="all">جميع المناطق</option>
+        <option value="الديس">الديس</option>
+        <option value="الفوة">الفوة</option>
+        <option value="الستين">الستين</option>
+        <option value="other">مناطق أخرى</option>
+      </select>
+
+      <button id="searchButton" type="button">ابحث الآن</button>
+      <p id="searchMessage" class="note" aria-live="polite">
+        جارٍ تحميل الإعلانات...
+      </p>
+    </div>
+  </div>
 </section>
 
 <main class="wrap">
-<section>
-<h2>استكشف مكلا هوم</h2>
-<div class="grid">
-<div class="card"><div class="symbol">🏞️</div><h3>الأراضي</h3><p>ابحث عن أرض تناسب احتياجك.</p></div>
-<div class="card"><div class="symbol">🏠</div><h3>العقارات</h3><p>منازل وشقق وعقارات متنوعة.</p></div>
-<div class="card"><div class="symbol">🏗️</div><h3>المقاولات</h3><p>مشاريع وتنفيذ وأعمال بناء.</p></div>
-<div class="card"><div class="symbol">📐</div><h3>الخدمات الهندسية</h3><p>مهندسون ومكاتب واستشارات.</p></div>
-</div>
-</section>
+  <section>
+    <h2>استكشف مكلا هوم</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="symbol">🏞️</div>
+        <h3>الأراضي</h3>
+        <p>ابحث عن أرض تناسب احتياجك.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">🏠</div>
+        <h3>العقارات</h3>
+        <p>منازل وشقق وعقارات متنوعة.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">🏗️</div>
+        <h3>المقاولات</h3>
+        <p>مشاريع وتنفيذ وأعمال بناء.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">📐</div>
+        <h3>الخدمات الهندسية</h3>
+        <p>مهندسون ومكاتب واستشارات.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="services" style="margin-top:28px">
-<h2>هل تريد عرض عقارك أو خدمتك؟</h2>
-<div class="card">
-<p>ابدأ بتسجيل بياناتك تمهيدًا لإضافة إعلانك إلى المنصة.</p>
-<p class="note">سيتم تفعيل التسجيل والإعلانات بعد ربط الواجهة بقاعدة البيانات.</p>
-<a class="action" href="mailto:">التواصل مع إدارة المنصة</a>
-</div>
-</section>
+  <section style="margin-top:28px">
+    <h2>الإعلانات المتاحة</h2>
+    <div id="listings" class="grid">
+      <div class="card">جارٍ تحميل الإعلانات...</div>
+    </div>
+  </section>
+
+  <section id="services" style="margin-top:28px">
+    <h2>هل تريد عرض عقارك أو خدمتك؟</h2>
+    <div class="card">
+      <p>قريبًا ستتمكن من تسجيل بياناتك لإضافة إعلانك إلى المنصة.</p>
+      <p class="note">
+        الإعلانات الجديدة تحتاج إلى مراجعة الإدارة وتفعيلها قبل ظهورها للزوار.
+      </p>
+      <a class="action"
+         href="https://wa.me/?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D9%85%D9%83%D9%84%D8%A7%20%D9%87%D9%88%D9%85">
+        الاستفسار عبر واتساب
+      </a>
+      <p class="note">سيُفتح واتساب لاختيار جهة الاتصال وإرسال الرسالة.</p>
+    </div>
+  </section>
 </main>
 
 <footer>
-<strong>مكلا هوم</strong>
-<p>عقارك ومشروعك في مكان واحد بسعر مناسب وجودة وضمان</p>
+  <strong>مكلا هوم</strong>
+  <p>عقارك ومشروعك في مكان واحد بسعر مناسب وجودة وضمان</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-function searchItems(){
-  document.getElementById('searchMessage').textContent =
-    'واجهة البحث جاهزة للتصميم؛ ستظهر نتائج العقارات بعد ربط قاعدة البيانات.';
+/* بيانات اتصال المشروع */
+const SUPABASE_URL = "https://avmdfbpmmysmqpeikezp.supabase.co";
+
+/* ضع المفتاح العام sb_publishable_ هنا بين علامتي الاقتباس */
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_qn9wO7laXdy9FPyx5oxDew_usfkJhX_";
+
+const listingsElement = document.getElementById("listings");
+const messageElement = document.getElementById("searchMessage");
+const searchButton = document.getElementById("searchButton");
+
+let allListings = [];
+let connectionReady = false;
+
+function safeText(value) {
+  return String(value ?? "").replace(/[&<>"']/g, function(ch) {
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[ch];
+  });
 }
+
+function getRelation(value) {
+  if (Array.isArray(value)) return value[0] || {};
+  return value || {};
+}
+
+function getCategory(item) {
+  return getRelation(item.service_categories).name || "";
+}
+
+function getProperty(item) {
+  return getRelation(item.properties);
+}
+
+function getImages(item) {
+  const images = Array.isArray(item.listing_images)
+    ? item.listing_images
+    : [];
+
+  return images
+    .filter(img => img.image_url)
+    .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+}
+
+function matchesKind(item, kind) {
+  if (kind === "all") return true;
+
+  const category = getCategory(item);
+  const property = getProperty(item);
+  const text = [
+    item.title,
+    item.description,
+    category,
+    property.property_type,
+    property.purpose
+  ].join(" ").toLowerCase();
+
+  if (kind === "land") {
+    return /أرض|اراض|أراض|land|plot/.test(text);
+  }
+
+  if (kind === "home") {
+    return /منزل|بيت|شقة|فيلا|سكن|عقار سكن|house|home|apartment|villa/.test(text);
+  }
+
+  if (kind === "engineering") {
+    return /هندس|مقاول|بناء|مواد|عامل|استشار|engineering|construction/.test(text);
+  }
+
+  return true;
+}
+
+function matchesArea(item, area) {
+  if (area === "all") return true;
+
+  const text = [
+    item.address,
+    item.service_area
+  ].join(" ");
+
+  if (area === "other") {
+    return !/الديس|الفوة|الستين/.test(text);
+  }
+
+  return text.includes(area);
+}
+
+function renderListings(items) {
+  if (!items.length) {
+    listingsElement.innerHTML =
+      '<div class="card">لا توجد إعلانات منشورة تطابق بحثك حاليًا.</div>';
+    return;
+  }
+
+  listingsElement.innerHTML = items.map(item => {
+    const category = getCategory(item);
+    const property = getProperty(item);
+    const images = getImages(item);
+    const image = images.length
+      ? `<img class="listing-image" src="${safeText(images[0].image_url)}" alt="${safeText(item.title)}" loading="lazy" referrerpolicy="no-referrer">`
+      : "";
+
+    const location = item.service_area || item.address || "";
+    const price = item.price !== null && item.price !== undefined
+      ? `${safeText(item.price)} ${safeText(item.currency || "YER")}`
+      : "السعر عند التواصل";
+
+    const areaSize = property.area_m2
+      ? `<p>المساحة: ${safeText(property.area_m2)} م²</p>`
+      : "";
+
+    const phone = String(item.whatsapp || item.phone || "")
+      .replace(/[^\d]/g, "");
+
+    const contact = phone
+      ? `<a class="action" href="https://wa.me/${phone}" target="_blank" rel="noopener noreferrer">تواصل عبر واتساب</a>`
+      : "";
+
+    return `
+      <article class="card">
+        ${image}
+        <p class="status">${safeText(category || "إعلان")}</p>
+        <h3>${safeText(item.title || "إعلان عقاري")}</h3>
+        <p>${safeText(item.description || "لا يوجد وصف إضافي.")}</p>
+        ${location ? `<p>📍 ${safeText(location)}</p>` : ""}
+        ${areaSize}
+        <p class="price">${price}</p>
+        ${contact}
+      </article>
+    `;
+  }).join("");
+}
+
+async function loadListings() {
+  messageElement.textContent = "جارٍ الاتصال بقاعدة البيانات...";
+  listingsElement.innerHTML =
+    '<div class="card">جارٍ تحميل الإعلانات...</div>';
+
+  if (!window.supabase) {
+    messageElement.textContent =
+      "تعذر تحميل مكتبة الاتصال. تحقق من اتصال الإنترنت.";
+    listingsElement.innerHTML = "";
+    return;
+  }
+
+  if (
+    !SUPABASE_PUBLISHABLE_KEY ||
+    SUPABASE_PUBLISHABLE_KEY === "ضع_المفتاح_العام_هنا"
+  ) {
+    messageElement.textContent =
+      "لم يُضف المفتاح العام إلى الكود بعد.";
+    listingsElement.innerHTML = "";
+    return;
+  }
+
+  try {
+    const client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const { data, error } = await client
+      .from("service_listings")
+      .select(`
+        id,
+        title,
+        description,
+        address,
+        service_area,
+        phone,
+        whatsapp,
+        price,
+        currency,
+        status,
+        is_active,
+        created_at,
+        service_categories(name),
+        properties(property_type,purpose,area_m2),
+        listing_images(image_url,sort_order)
+      `)
+      .eq("status", "published")
+      .eq("is_active", true)
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    allListings = data || [];
+    connectionReady = true;
+    applySearch();
+
+    messageElement.textContent =
+      `تم الاتصال بنجاح. عدد الإعلانات المنشورة: ${allListings.length}.`;
+  } catch (error) {
+    console.error("Supabase error:", error);
+    connectionReady = false;
+    allListings = [];
+    listingsElement.innerHTML =
+      '<div class="card">تعذر تحميل الإعلانات. يرجى التحقق من إعدادات الاتصال وصلاحيات القراءة.</div>';
+    messageElement.textContent =
+      "لم يكتمل الاتصال بقاعدة البيانات. سنراجع رسالة الخطأ إذا استمرت المشكلة.";
+  }
+}
+
+function applySearch() {
+  if (!connectionReady) return;
+
+  const kind = document.getElementById("kind").value;
+  const area = document.getElementById("area").value;
+
+  const results = allListings.filter(item =>
+    matchesKind(item, kind) && matchesArea(item, area)
+  );
+
+  renderListings(results);
+
+  messageElement.textContent =
+    `عدد النتائج المطابقة: ${results.length}`;
+}
+
+searchButton.addEventListener("click", applySearch);
+
+loadListings();
 </script>
 </body>
 </html>
