@@ -73,9 +73,10 @@ nav a {
 label {
   display:block;
   font-weight:700;
-  margin-top:7px;
+  margin-top:10px;
 }
-select {
+input,select,textarea {
+  display:block;
   width:100%;
   padding:12px;
   margin:5px 0;
@@ -85,6 +86,7 @@ select {
   background:white;
   color:var(--text);
 }
+textarea { resize:vertical; }
 button,.btn {
   display:inline-block;
   background:var(--gold);
@@ -97,14 +99,12 @@ button,.btn {
   font-weight:700;
   cursor:pointer;
 }
-button:focus-visible,a:focus-visible,select:focus-visible {
+button:focus-visible,a:focus-visible,
+select:focus-visible,input:focus-visible,textarea:focus-visible {
   outline:3px solid var(--gold);
   outline-offset:3px;
 }
-.search button {
-  width:100%;
-  margin-top:10px;
-}
+.search button { width:100%; margin-top:10px; }
 .wrap { padding:22px 16px; }
 section { scroll-margin-top:16px; }
 h2 {
@@ -157,6 +157,7 @@ h2 {
 .category-card p { font-weight:400; }
 .action {
   display:block;
+  width:100%;
   text-align:center;
   background:var(--green);
   color:white;
@@ -167,14 +168,8 @@ h2 {
   font-weight:700;
 }
 .action:hover { background:var(--green-dark); }
-.note {
-  font-size:13px;
-  color:#657067;
-}
-#searchMessage {
-  margin:10px 0 0;
-  color:#526056;
-}
+.note { font-size:13px; color:#657067; }
+#searchMessage { margin:10px 0 0; color:#526056; }
 #listings { margin-top:8px; }
 .listing-image {
   display:block;
@@ -190,14 +185,18 @@ h2 {
   font-weight:800;
   font-size:17px!important;
 }
-.status {
-  color:#657067;
-  font-size:13px;
-}
+.status { color:#657067; font-size:13px; }
 .empty-state {
   grid-column:1/-1;
   text-align:center;
   padding:22px;
+}
+.form-note {
+  background:#f5f6f2;
+  border-radius:9px;
+  padding:10px;
+  font-size:13px;
+  color:#526056;
 }
 footer {
   text-align:center;
@@ -224,14 +223,14 @@ footer p { margin-bottom:0; }
 <header>
   <nav>
     <div class="logo">مكلا هوم</div>
-    <a href="#services">عرض إعلان</a>
+    <a href="#join">انضم إلى المنصة</a>
   </nav>
 </header>
 
 <section class="hero">
   <div class="wrap">
     <h1>عقارك ومشروعك في مكان واحد</h1>
-    <p>ابحث عن الأراضي والعقارات والخدمات الهندسية في المكلا وحضرموت.</p>
+    <p>منصة الأراضي والعقارات والخدمات الهندسية والمقاولات في المكلا وحضرموت.</p>
 
     <div class="search">
       <label for="kind">ماذا تبحث عنه؟</label>
@@ -261,19 +260,41 @@ footer p { margin-bottom:0; }
 </section>
 
 <main class="wrap">
-  <section id="explore">
+
+  <section id="join">
+    <h2>ماذا تريد أن تفعل في مكلا هوم؟</h2>
+
+    <div class="grid">
+      <button type="button" class="category-card"
+        onclick="document.getElementById('availableListings').scrollIntoView({behavior:'smooth'});">
+        <span class="symbol">🔎</span>
+        <h3>طالب الخدمة</h3>
+        <p>ابحث عن الأراضي والعقارات والمهندسين والمقاولين والخدمات.</p>
+      </button>
+
+      <button type="button" class="category-card"
+        onclick="document.getElementById('providerFormSection').scrollIntoView({behavior:'smooth'});">
+        <span class="symbol">🏢</span>
+        <h3>مقدم الخدمة</h3>
+        <p>اعرض عقارك أو أرضك أو خدمتك مجانًا على المنصة.</p>
+      </button>
+    </div>
+  </section>
+
+  <section id="explore" style="margin-top:28px">
     <h2>استكشف مكلا هوم</h2>
+
     <div class="grid">
       <button type="button" class="category-card" data-kind="land">
         <span class="symbol">🏞️</span>
         <h3>الأراضي</h3>
-        <p>اضغط لعرض الأراضي المنشورة.</p>
+        <p>أراضٍ للبيع ومخططات عقارية.</p>
       </button>
 
       <button type="button" class="category-card" data-kind="home">
         <span class="symbol">🏠</span>
         <h3>العقارات</h3>
-        <p>منازل وشقق وعقارات سكنية.</p>
+        <p>منازل وشقق وعقارات متنوعة.</p>
       </button>
 
       <button type="button" class="category-card" data-kind="contracting">
@@ -297,26 +318,86 @@ footer p { margin-bottom:0; }
     </div>
   </section>
 
-  <section id="services" style="margin-top:28px">
-    <h2>هل تريد عرض عقارك أو خدمتك؟</h2>
+  <section id="providerFormSection" style="margin-top:28px">
+    <h2>مقدم الخدمة — سجّل إعلانك مجانًا</h2>
+
     <div class="card">
-      <p>يمكنك التواصل للاستفسار عن التسجيل وإضافة إعلانك إلى مكلا هوم.</p>
-      <p class="note">
-        الإعلانات الجديدة تحتاج إلى مراجعة الإدارة ونشرها قبل ظهورها للزوار.
+      <p>
+        هل أنت مالك أرض أو عقار، أو مهندس، أو مقاول، أو مورد مواد بناء،
+        أو عامل؟ سجّل تفاصيل إعلانك لطلب عرضه على مكلا هوم.
       </p>
-      <a class="action"
-         href="https://wa.me/?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D9%85%D9%83%D9%84%D8%A7%20%D9%87%D9%88%D9%85"
-         target="_blank" rel="noopener noreferrer">
-        الاستفسار عبر واتساب
-      </a>
-      <p class="note">سيُفتح واتساب لاختيار جهة الاتصال وإرسال الرسالة.</p>
+
+      <p class="form-note">
+        التسجيل مجاني. سيحتاج الإعلان إلى مراجعة الإدارة قبل نشره.
+        إرسال النموذج عبر واتساب لا يعني أن الإعلان نُشر أو حُفظ تلقائيًا في قاعدة البيانات.
+      </p>
+
+      <form id="providerForm">
+        <label for="providerName">اسم المعلن أو المؤسسة *</label>
+        <input id="providerName" name="providerName"
+          type="text" maxlength="100" required
+          autocomplete="name"
+          placeholder="الاسم أو اسم المكتب">
+
+        <label for="providerType">نوع الإعلان *</label>
+        <select id="providerType" name="providerType" required>
+          <option value="">اختر نوع الإعلان</option>
+          <option value="أرض">أرض</option>
+          <option value="عقار أو منزل أو شقة">عقار أو منزل أو شقة</option>
+          <option value="خدمات هندسية">خدمات هندسية</option>
+          <option value="مقاولات وبناء">مقاولات وبناء</option>
+          <option value="مواد بناء">مواد بناء</option>
+          <option value="عمالة ومهن">عمالة ومهن</option>
+        </select>
+
+        <label for="providerTitle">عنوان الإعلان *</label>
+        <input id="providerTitle" name="providerTitle"
+          type="text" maxlength="150" required
+          placeholder="مثال: أرض للبيع في المكلا">
+
+        <label for="providerArea">المنطقة أو الموقع *</label>
+        <input id="providerArea" name="providerArea"
+          type="text" maxlength="150" required
+          placeholder="مثال: الديس - المكلا">
+
+        <label for="providerDescription">تفاصيل الإعلان *</label>
+        <textarea id="providerDescription" name="providerDescription"
+          maxlength="1500" rows="4" required
+          placeholder="اكتب وصف العقار أو الخدمة والمساحة والتفاصيل المهمة"></textarea>
+
+        <label for="providerPrice">السعر (اختياري)</label>
+        <input id="providerPrice" name="providerPrice"
+          type="text" maxlength="50"
+          placeholder="السعر أو قابل للتفاوض">
+
+        <label for="providerPhone">رقم التواصل أو واتساب *</label>
+        <input id="providerPhone" name="providerPhone"
+          type="tel" maxlength="25" required
+          inputmode="tel" autocomplete="tel"
+          placeholder="أدخل رقم التواصل">
+
+        <label for="providerContact">طريقة التواصل المفضلة</label>
+        <select id="providerContact" name="providerContact">
+          <option value="واتساب">واتساب</option>
+          <option value="اتصال هاتفي">اتصال هاتفي</option>
+          <option value="واتساب واتصال">واتساب واتصال</option>
+        </select>
+
+        <button type="submit" style="width:100%;margin-top:16px">
+          تجهيز طلب الإعلان عبر واتساب
+        </button>
+      </form>
+
+      <p id="providerMessage" class="note" aria-live="polite"></p>
     </div>
   </section>
+
 </main>
 
 <footer>
   <strong>مكلا هوم</strong>
   <p>عقارك ومشروعك في مكان واحد بسعر مناسب وجودة وضمان</p>
+  <p class="note">إضافة الإعلانات مجانية، والنشر بعد مراجعة الإدارة.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -325,7 +406,8 @@ footer p { margin-bottom:0; }
 "use strict";
 
 /* إعدادات مشروع Supabase */
-const SUPABASE_URL = "https://avmdfbpmmysmqpeikezp.supabase.co";
+const SUPABASE_URL =
+  "https://avmdfbpmmysmqpeikezp.supabase.co";
 
 /* المفتاح العام للمشروع فقط، وليس مفتاح service_role */
 const SUPABASE_PUBLISHABLE_KEY =
@@ -336,6 +418,8 @@ const messageElement = document.getElementById("searchMessage");
 const searchButton = document.getElementById("searchButton");
 const kindSelect = document.getElementById("kind");
 const areaSelect = document.getElementById("area");
+const providerForm = document.getElementById("providerForm");
+const providerMessage = document.getElementById("providerMessage");
 
 let allListings = [];
 let connectionReady = false;
@@ -421,23 +505,15 @@ function matchesKind(item, kind) {
   }
 
   if (kind === "contracting") {
-    const categoryMatch =
-      /مقاول|مقاولات|بناء|انشاء|تنفيذ|construction|contracting/.test(category);
-
-    const textMatch =
-      /مقاول|مقاولات|بناء|انشاء|تنفيذ|ترميم|تشطيب|construction|contracting/.test(text);
-
-    return categoryMatch || textMatch;
+    return /مقاول|مقاولات|بناء|انشاء|تنفيذ|ترميم|تشطيب|construction|contracting/.test(
+      category + " " + text
+    );
   }
 
   if (kind === "engineering") {
-    const categoryMatch =
-      /هندس|استشار|مساح|تصميم|engineering|consulting|survey/.test(category);
-
-    const textMatch =
-      /هندس|استشار|مساح|تصميم|مخططات|اشراف هندسي|engineering|consulting|survey/.test(text);
-
-    return categoryMatch || textMatch;
+    return /هندس|استشار|مساح|تصميم|مخططات|اشراف هندسي|engineering|consulting|survey/.test(
+      category + " " + text
+    );
   }
 
   return true;
@@ -463,7 +539,6 @@ function matchesArea(item, area) {
 function normalizePhone(value) {
   let phone = String(value ?? "").replace(/\D/g, "");
 
-  /* تحويل الأرقام اليمنية المحلية إلى صيغة دولية */
   if (phone.startsWith("00")) {
     phone = phone.slice(2);
   }
@@ -474,7 +549,6 @@ function normalizePhone(value) {
     phone = "967" + phone;
   }
 
-  /* لا نعرض رابط واتساب لأرقام قصيرة أو غير صالحة */
   if (phone.length < 10 || phone.length > 15) return "";
 
   return phone;
@@ -485,7 +559,7 @@ function renderListings(items) {
     listingsElement.innerHTML =
       '<div class="card empty-state">' +
       'لا توجد إعلانات منشورة تطابق بحثك حاليًا.' +
-      '<p class="note">جرّب اختيار جميع المناطق أو قسم آخر.</p>' +
+      '<p class="note">جرّب اختيار جميع المناطق أو قسم آخر، أو عد لاحقًا للاطلاع على الإعلانات الجديدة.</p>' +
       '</div>';
     return;
   }
@@ -504,10 +578,13 @@ function renderListings(items) {
 
     const location = item.service_area || item.address || "";
 
-    const price = item.price !== null && item.price !== undefined &&
-                  item.price !== ""
-      ? safeText(item.price) + " " + safeText(item.currency || "YER")
-      : "السعر عند التواصل";
+    const price =
+      item.price !== null &&
+      item.price !== undefined &&
+      item.price !== ""
+        ? safeText(item.price) + " " +
+          safeText(item.currency || "YER")
+        : "السعر عند التواصل";
 
     const areaSize = property.area_m2
       ? '<p>المساحة: ' + safeText(property.area_m2) + ' م²</p>'
@@ -610,7 +687,6 @@ async function loadListings() {
 
     allListings = result.data || [];
     connectionReady = true;
-
     applySearch();
 
   } catch (error) {
@@ -626,17 +702,15 @@ async function loadListings() {
       '</div>';
 
     messageElement.textContent =
-      "فشل الاتصال. احتفظ برسالة الخطأ للمراجعة.";
+      "فشل الاتصال. يرجى مراجعة إعدادات الاتصال.";
   }
 }
 
 /* زر البحث */
-searchButton.addEventListener("click", function() {
-  applySearch();
-});
+searchButton.addEventListener("click", applySearch);
 
-/* الضغط على بطاقات الأقسام يختار القسم ويشغّل البحث */
-document.querySelectorAll(".category-card").forEach(function(card) {
+/* أزرار أقسام الأراضي والعقارات والخدمات */
+document.querySelectorAll(".category-card[data-kind]").forEach(function(card) {
   card.addEventListener("click", function() {
     kindSelect.value = card.dataset.kind;
     applySearch();
@@ -648,7 +722,44 @@ document.querySelectorAll(".category-card").forEach(function(card) {
   });
 });
 
-/* تغيير الاختيارات ثم الضغط على زر البحث يعرض النتائج المطابقة */
+/* نموذج مقدم الخدمة: تجهيز رسالة طلب إعلان مجاني */
+providerForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (!providerForm.reportValidity()) {
+    return;
+  }
+
+  const value = function(id) {
+    return document.getElementById(id).value.trim();
+  };
+
+  const phone = value("providerPhone");
+
+  const message = [
+    "طلب إضافة إعلان مجاني - مكلا هوم",
+    "اسم المعلن أو المؤسسة: " + value("providerName"),
+    "نوع الإعلان: " + value("providerType"),
+    "عنوان الإعلان: " + value("providerTitle"),
+    "الموقع: " + value("providerArea"),
+    "تفاصيل الإعلان: " + value("providerDescription"),
+    "السعر: " + (value("providerPrice") || "عند التواصل"),
+    "رقم التواصل: " + phone,
+    "طريقة التواصل: " + value("providerContact"),
+    "يرجى مراجعة الإعلان قبل نشره.",
+    "هذا الطلب مجاني."
+  ].join("\n");
+
+  const whatsappURL =
+    "https://wa.me/?text=" + encodeURIComponent(message);
+
+  providerMessage.textContent =
+    "سيتم فتح واتساب برسالة مجهزة. اختر جهة الاتصال المناسبة ثم أرسل الرسالة. لم يُحفظ الإعلان في قاعدة البيانات بعد.";
+
+  window.open(whatsappURL, "_blank", "noopener,noreferrer");
+});
+
+/* تحميل الإعلانات المنشورة */
 loadListings();
 </script>
 </body>
