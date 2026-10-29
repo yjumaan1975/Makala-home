@@ -5,27 +5,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#123c32">
+<meta name="description" content="مكلا هوم: منصة الأراضي والعقارات والخدمات الهندسية والمقاولات في المكلا وحضرموت.">
 <title>مكلا هوم | العقارات والخدمات</title>
 
 <style>
 :root {
   --green:#123c32;
+  --green-dark:#102c25;
   --gold:#d8b46a;
   --bg:#f5f6f2;
   --white:#fff;
+  --text:#202820;
+  --muted:#626a62;
+  --border:#e7e9e2;
 }
 * { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
   margin:0;
   font-family:system-ui,-apple-system,sans-serif;
   background:var(--bg);
-  color:#202820;
+  color:var(--text);
   line-height:1.8;
 }
 header {
   background:var(--green);
   color:white;
-  padding:18px 16px;
+  padding:14px 16px;
 }
 nav,.wrap {
   max-width:1000px;
@@ -42,29 +48,42 @@ nav {
   font-weight:800;
   color:var(--gold);
 }
-nav a { color:white; text-decoration:none; }
+nav a {
+  color:white;
+  text-decoration:none;
+}
 .hero {
   background:var(--green);
   color:white;
-  padding:25px 18px 38px;
+  padding:24px 16px 36px;
 }
-.hero h1 { font-size:29px; line-height:1.5; margin:0 0 8px; }
+.hero h1 {
+  font-size:clamp(25px,5vw,34px);
+  line-height:1.5;
+  margin:0 0 8px;
+}
 .hero p { margin:0 0 18px; color:#e0e9e4; }
 .search {
   background:white;
   border-radius:14px;
-  padding:14px;
-  color:#333;
+  padding:15px;
+  color:var(--text);
+  box-shadow:0 5px 18px #00000012;
 }
-label { display:block; font-weight:600; }
+label {
+  display:block;
+  font-weight:700;
+  margin-top:7px;
+}
 select {
   width:100%;
-  padding:13px;
+  padding:12px;
   margin:5px 0;
   border:1px solid #ddd;
   border-radius:9px;
   font:inherit;
   background:white;
+  color:var(--text);
 }
 button,.btn {
   display:inline-block;
@@ -78,24 +97,64 @@ button,.btn {
   font-weight:700;
   cursor:pointer;
 }
-.search button { width:100%; margin-top:8px; }
+button:focus-visible,a:focus-visible,select:focus-visible {
+  outline:3px solid var(--gold);
+  outline-offset:3px;
+}
+.search button {
+  width:100%;
+  margin-top:10px;
+}
 .wrap { padding:22px 16px; }
-h2 { font-size:22px; margin:0 0 14px; }
+section { scroll-margin-top:16px; }
+h2 {
+  font-size:22px;
+  line-height:1.5;
+  margin:0 0 14px;
+}
 .grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));
   gap:12px;
 }
 .card {
   background:white;
   border-radius:14px;
-  padding:17px;
-  border:1px solid #e7e9e2;
+  padding:16px;
+  border:1px solid var(--border);
   min-width:0;
+  overflow-wrap:anywhere;
 }
-.symbol { font-size:27px; }
-.card h3 { margin:5px 0; font-size:17px; }
-.card p { margin:4px 0; color:#626a62; font-size:14px; }
+.category-card {
+  width:100%;
+  min-width:0;
+  text-align:right;
+  color:var(--text);
+  font:inherit;
+  font-weight:400;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:17px;
+  cursor:pointer;
+  transition:border-color .15s,transform .15s;
+}
+.category-card:hover {
+  border-color:var(--gold);
+  transform:translateY(-2px);
+}
+.symbol { font-size:29px; }
+.card h3,.category-card h3 {
+  margin:5px 0;
+  font-size:17px;
+  font-weight:800;
+}
+.card p,.category-card p {
+  margin:4px 0;
+  color:var(--muted);
+  font-size:14px;
+}
+.category-card p { font-weight:400; }
 .action {
   display:block;
   text-align:center;
@@ -105,10 +164,20 @@ h2 { font-size:22px; margin:0 0 14px; }
   border-radius:10px;
   text-decoration:none;
   margin-top:12px;
+  font-weight:700;
 }
-.note { font-size:13px; color:#657067; }
-#searchMessage { margin:10px 0 0; }
+.action:hover { background:var(--green-dark); }
+.note {
+  font-size:13px;
+  color:#657067;
+}
+#searchMessage {
+  margin:10px 0 0;
+  color:#526056;
+}
+#listings { margin-top:8px; }
 .listing-image {
+  display:block;
   width:100%;
   height:190px;
   object-fit:cover;
@@ -116,16 +185,38 @@ h2 { font-size:22px; margin:0 0 14px; }
   margin-bottom:8px;
   background:#eee;
 }
-.price { color:var(--green)!important; font-weight:800; font-size:17px!important; }
-.status { color:#657067; font-size:13px; }
+.price {
+  color:var(--green)!important;
+  font-weight:800;
+  font-size:17px!important;
+}
+.status {
+  color:#657067;
+  font-size:13px;
+}
+.empty-state {
+  grid-column:1/-1;
+  text-align:center;
+  padding:22px;
+}
 footer {
   text-align:center;
-  background:#102c25;
+  background:var(--green-dark);
   color:#eee;
   padding:22px 15px;
   margin-top:20px;
 }
 footer p { margin-bottom:0; }
+@media (max-width:480px) {
+  .hero { padding-top:20px; }
+  .wrap { padding:18px 12px; }
+  .grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+  .card,.category-card { padding:12px; }
+  .category-card h3 { font-size:15px; }
+}
 </style>
 </head>
 
@@ -133,7 +224,7 @@ footer p { margin-bottom:0; }
 <header>
   <nav>
     <div class="logo">مكلا هوم</div>
-    <a href="#services">الخدمات</a>
+    <a href="#services">عرض إعلان</a>
   </nav>
 </header>
 
@@ -148,7 +239,8 @@ footer p { margin-bottom:0; }
         <option value="all">جميع العقارات والخدمات</option>
         <option value="land">أراضٍ</option>
         <option value="home">منازل وشقق</option>
-        <option value="engineering">خدمات هندسية ومقاولات</option>
+        <option value="contracting">مقاولات وبناء</option>
+        <option value="engineering">خدمات هندسية</option>
       </select>
 
       <label for="area">المنطقة</label>
@@ -169,48 +261,52 @@ footer p { margin-bottom:0; }
 </section>
 
 <main class="wrap">
-  <section>
+  <section id="explore">
     <h2>استكشف مكلا هوم</h2>
     <div class="grid">
-      <div class="card">
-        <div class="symbol">🏞️</div>
+      <button type="button" class="category-card" data-kind="land">
+        <span class="symbol">🏞️</span>
         <h3>الأراضي</h3>
-        <p>ابحث عن أرض تناسب احتياجك.</p>
-      </div>
-      <div class="card">
-        <div class="symbol">🏠</div>
+        <p>اضغط لعرض الأراضي المنشورة.</p>
+      </button>
+
+      <button type="button" class="category-card" data-kind="home">
+        <span class="symbol">🏠</span>
         <h3>العقارات</h3>
-        <p>منازل وشقق وعقارات متنوعة.</p>
-      </div>
-      <div class="card">
-        <div class="symbol">🏗️</div>
+        <p>منازل وشقق وعقارات سكنية.</p>
+      </button>
+
+      <button type="button" class="category-card" data-kind="contracting">
+        <span class="symbol">🏗️</span>
         <h3>المقاولات</h3>
         <p>مشاريع وتنفيذ وأعمال بناء.</p>
-      </div>
-      <div class="card">
-        <div class="symbol">📐</div>
+      </button>
+
+      <button type="button" class="category-card" data-kind="engineering">
+        <span class="symbol">📐</span>
         <h3>الخدمات الهندسية</h3>
         <p>مهندسون ومكاتب واستشارات.</p>
-      </div>
+      </button>
     </div>
   </section>
 
-  <section style="margin-top:28px">
+  <section id="availableListings" style="margin-top:28px">
     <h2>الإعلانات المتاحة</h2>
-    <div id="listings" class="grid">
-      <div class="card">جارٍ تحميل الإعلانات...</div>
+    <div id="listings" class="grid" aria-live="polite">
+      <div class="card empty-state">جارٍ تحميل الإعلانات...</div>
     </div>
   </section>
 
   <section id="services" style="margin-top:28px">
     <h2>هل تريد عرض عقارك أو خدمتك؟</h2>
     <div class="card">
-      <p>قريبًا ستتمكن من تسجيل بياناتك لإضافة إعلانك إلى المنصة.</p>
+      <p>يمكنك التواصل للاستفسار عن التسجيل وإضافة إعلانك إلى مكلا هوم.</p>
       <p class="note">
-        الإعلانات الجديدة تحتاج إلى مراجعة الإدارة وتفعيلها قبل ظهورها للزوار.
+        الإعلانات الجديدة تحتاج إلى مراجعة الإدارة ونشرها قبل ظهورها للزوار.
       </p>
       <a class="action"
-         href="https://wa.me/?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D9%85%D9%83%D9%84%D8%A7%20%D9%87%D9%88%D9%85">
+         href="https://wa.me/?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D9%85%D9%83%D9%84%D8%A7%20%D9%87%D9%88%D9%85"
+         target="_blank" rel="noopener noreferrer">
         الاستفسار عبر واتساب
       </a>
       <p class="note">سيُفتح واتساب لاختيار جهة الاتصال وإرسال الرسالة.</p>
@@ -226,15 +322,20 @@ footer p { margin-bottom:0; }
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-/* بيانات اتصال المشروع */
+"use strict";
+
+/* إعدادات مشروع Supabase */
 const SUPABASE_URL = "https://avmdfbpmmysmqpeikezp.supabase.co";
 
-/* ضع المفتاح العام sb_publishable_ هنا بين علامتي الاقتباس */
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_qn9wO7laXdy9FPyx5oxDew_usfkJhX_";
+/* المفتاح العام للمشروع فقط، وليس مفتاح service_role */
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_qn9wO7laXdy9FPyx5oxDew_usfkJhX_";
 
 const listingsElement = document.getElementById("listings");
 const messageElement = document.getElementById("searchMessage");
 const searchButton = document.getElementById("searchButton");
+const kindSelect = document.getElementById("kind");
+const areaSelect = document.getElementById("area");
 
 let allListings = [];
 let connectionReady = false;
@@ -249,6 +350,16 @@ function safeText(value) {
       "'":"&#39;"
     }[ch];
   });
+}
+
+function normalizeArabic(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ة/g, "ه")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function getRelation(value) {
@@ -270,33 +381,63 @@ function getImages(item) {
     : [];
 
   return images
-    .filter(img => img.image_url)
+    .filter(img => img && img.image_url)
     .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+}
+
+function itemSearchText(item) {
+  const property = getProperty(item);
+
+  return normalizeArabic([
+    item.title,
+    item.description,
+    item.address,
+    item.service_area,
+    getCategory(item),
+    property.property_type,
+    property.purpose
+  ].join(" "));
 }
 
 function matchesKind(item, kind) {
   if (kind === "all") return true;
 
-  const category = getCategory(item);
+  const text = itemSearchText(item);
+  const category = normalizeArabic(getCategory(item));
   const property = getProperty(item);
-  const text = [
-    item.title,
-    item.description,
-    category,
-    property.property_type,
-    property.purpose
-  ].join(" ").toLowerCase();
+  const propertyType = normalizeArabic(property.property_type);
+  const purpose = normalizeArabic(property.purpose);
 
   if (kind === "land") {
-    return /أرض|اراض|أراض|land|plot/.test(text);
+    return /ارض|اراضي|قطعه ارض|مخطط|land|plot/.test(
+      text + " " + propertyType + " " + purpose
+    );
   }
 
   if (kind === "home") {
-    return /منزل|بيت|شقة|فيلا|سكن|عقار سكن|house|home|apartment|villa/.test(text);
+    return /منزل|بيت|شقه|فيلا|سكن|عقار سكن|house|home|apartment|villa/.test(
+      text + " " + propertyType + " " + purpose
+    );
+  }
+
+  if (kind === "contracting") {
+    const categoryMatch =
+      /مقاول|مقاولات|بناء|انشاء|تنفيذ|construction|contracting/.test(category);
+
+    const textMatch =
+      /مقاول|مقاولات|بناء|انشاء|تنفيذ|ترميم|تشطيب|construction|contracting/.test(text);
+
+    return categoryMatch || textMatch;
   }
 
   if (kind === "engineering") {
-    return /هندس|مقاول|بناء|مواد|عامل|استشار|engineering|construction/.test(text);
+    const categoryMatch =
+      /هندس|استشار|مساح|تصميم|engineering|consulting|survey/.test(category);
+
+    const textMatch =
+      /هندس|استشار|مساح|تصميم|مخططات|اشراف هندسي|engineering|consulting|survey/.test(text);
+
+    return categoryMatch || textMatch;
   }
 
   return true;
@@ -305,83 +446,132 @@ function matchesKind(item, kind) {
 function matchesArea(item, area) {
   if (area === "all") return true;
 
-  const text = [
+  const location = normalizeArabic([
     item.address,
     item.service_area
-  ].join(" ");
+  ].join(" "));
+
+  if (!location) return false;
 
   if (area === "other") {
-    return !/الديس|الفوة|الستين/.test(text);
+    return !/الديس|الفوه|الستين/.test(location);
   }
 
-  return text.includes(area);
+  return location.includes(normalizeArabic(area));
+}
+
+function normalizePhone(value) {
+  let phone = String(value ?? "").replace(/\D/g, "");
+
+  /* تحويل الأرقام اليمنية المحلية إلى صيغة دولية */
+  if (phone.startsWith("00")) {
+    phone = phone.slice(2);
+  }
+
+  if (phone.startsWith("0") && phone.length === 10) {
+    phone = "967" + phone.slice(1);
+  } else if (phone.length === 9 && phone.startsWith("7")) {
+    phone = "967" + phone;
+  }
+
+  /* لا نعرض رابط واتساب لأرقام قصيرة أو غير صالحة */
+  if (phone.length < 10 || phone.length > 15) return "";
+
+  return phone;
 }
 
 function renderListings(items) {
   if (!items.length) {
     listingsElement.innerHTML =
-      '<div class="card">لا توجد إعلانات منشورة تطابق بحثك حاليًا.</div>';
+      '<div class="card empty-state">' +
+      'لا توجد إعلانات منشورة تطابق بحثك حاليًا.' +
+      '<p class="note">جرّب اختيار جميع المناطق أو قسم آخر.</p>' +
+      '</div>';
     return;
   }
 
-  listingsElement.innerHTML = items.map(item => {
+  listingsElement.innerHTML = items.map(function(item) {
     const category = getCategory(item);
     const property = getProperty(item);
     const images = getImages(item);
+
     const image = images.length
-      ? `<img class="listing-image" src="${safeText(images[0].image_url)}" alt="${safeText(item.title)}" loading="lazy" referrerpolicy="no-referrer">`
+      ? '<img class="listing-image" src="' +
+        safeText(images[0].image_url) +
+        '" alt="' + safeText(item.title || "صورة الإعلان") +
+        '" loading="lazy" referrerpolicy="no-referrer">'
       : "";
 
     const location = item.service_area || item.address || "";
-    const price = item.price !== null && item.price !== undefined
-      ? `${safeText(item.price)} ${safeText(item.currency || "YER")}`
+
+    const price = item.price !== null && item.price !== undefined &&
+                  item.price !== ""
+      ? safeText(item.price) + " " + safeText(item.currency || "YER")
       : "السعر عند التواصل";
 
     const areaSize = property.area_m2
-      ? `<p>المساحة: ${safeText(property.area_m2)} م²</p>`
+      ? '<p>المساحة: ' + safeText(property.area_m2) + ' م²</p>'
       : "";
 
-    const phone = String(item.whatsapp || item.phone || "")
-      .replace(/[^\d]/g, "");
+    const phone = normalizePhone(item.whatsapp || item.phone || "");
 
     const contact = phone
-      ? `<a class="action" href="https://wa.me/${phone}" target="_blank" rel="noopener noreferrer">تواصل عبر واتساب</a>`
+      ? '<a class="action" href="https://wa.me/' + phone +
+        '" target="_blank" rel="noopener noreferrer">' +
+        'تواصل عبر واتساب</a>'
       : "";
 
-    return `
-      <article class="card">
-        ${image}
-        <p class="status">${safeText(category || "إعلان")}</p>
-        <h3>${safeText(item.title || "إعلان عقاري")}</h3>
-        <p>${safeText(item.description || "لا يوجد وصف إضافي.")}</p>
-        ${location ? `<p>📍 ${safeText(location)}</p>` : ""}
-        ${areaSize}
-        <p class="price">${price}</p>
-        ${contact}
-      </article>
-    `;
+    return '<article class="card">' +
+      image +
+      '<p class="status">' + safeText(category || "إعلان") + '</p>' +
+      '<h3>' + safeText(item.title || "إعلان") + '</h3>' +
+      '<p>' + safeText(item.description || "لا يوجد وصف إضافي.") + '</p>' +
+      (location ? '<p>📍 ' + safeText(location) + '</p>' : '') +
+      areaSize +
+      '<p class="price">' + price + '</p>' +
+      contact +
+      '</article>';
   }).join("");
 }
 
-async function loadListings() {
-  messageElement.textContent = "جارٍ الاتصال بقاعدة البيانات...";
-  listingsElement.innerHTML =
-    '<div class="card">جارٍ تحميل الإعلانات...</div>';
-
-  if (!window.supabase) {
+function applySearch() {
+  if (!connectionReady) {
     messageElement.textContent =
-      "تعذر تحميل مكتبة الاتصال. تحقق من اتصال الإنترنت.";
-    listingsElement.innerHTML = "";
+      "انتظر حتى يكتمل الاتصال بقاعدة البيانات.";
     return;
   }
 
-  if (
-    !SUPABASE_PUBLISHABLE_KEY ||
-    SUPABASE_PUBLISHABLE_KEY === "ضع_المفتاح_العام_هنا"
-  ) {
+  const kind = kindSelect.value;
+  const area = areaSelect.value;
+
+  const results = allListings.filter(function(item) {
+    return matchesKind(item, kind) && matchesArea(item, area);
+  });
+
+  renderListings(results);
+
+  messageElement.textContent =
+    "عدد النتائج المطابقة: " + results.length +
+    " من أصل " + allListings.length + " إعلان منشور.";
+}
+
+async function loadListings() {
+  connectionReady = false;
+  messageElement.textContent = "جارٍ الاتصال بقاعدة البيانات...";
+  listingsElement.innerHTML =
+    '<div class="card empty-state">جارٍ تحميل الإعلانات...</div>';
+
+  if (!window.supabase) {
     messageElement.textContent =
-      "لم يُضف المفتاح العام إلى الكود بعد.";
-    listingsElement.innerHTML = "";
+      "تعذر تحميل مكتبة الاتصال. تحقق من الإنترنت ثم أعد تحميل الصفحة.";
+    listingsElement.innerHTML =
+      '<div class="card empty-state">تعذر الاتصال بالمكتبة المطلوبة.</div>';
+    return;
+  }
+
+  if (!SUPABASE_PUBLISHABLE_KEY) {
+    messageElement.textContent =
+      "مفتاح الاتصال العام غير موجود.";
     return;
   }
 
@@ -391,7 +581,7 @@ async function loadListings() {
       SUPABASE_PUBLISHABLE_KEY
     );
 
-    const { data, error } = await client
+    const result = await client
       .from("service_listings")
       .select(`
         id,
@@ -414,43 +604,51 @@ async function loadListings() {
       .eq("is_active", true)
       .order("created_at", { ascending: false });
 
-    if (error) throw error;
+    if (result.error) {
+      throw result.error;
+    }
 
-    allListings = data || [];
+    allListings = result.data || [];
     connectionReady = true;
+
     applySearch();
 
-    messageElement.textContent =
-      `تم الاتصال بنجاح. عدد الإعلانات المنشورة: ${allListings.length}.`;
   } catch (error) {
-    console.error("Supabase error:", error);
+    console.error("Supabase loading error:", error);
+
     connectionReady = false;
     allListings = [];
+
     listingsElement.innerHTML =
-      '<div class="card">تعذر تحميل الإعلانات. يرجى التحقق من إعدادات الاتصال وصلاحيات القراءة.</div>';
+      '<div class="card empty-state">' +
+      'تعذر تحميل الإعلانات من قاعدة البيانات.' +
+      '<p class="note">قد تكون المشكلة في الاتصال أو صلاحيات القراءة أو علاقة أحد الجداول.</p>' +
+      '</div>';
+
     messageElement.textContent =
-      "لم يكتمل الاتصال بقاعدة البيانات. سنراجع رسالة الخطأ إذا استمرت المشكلة.";
+      "فشل الاتصال. احتفظ برسالة الخطأ للمراجعة.";
   }
 }
 
-function applySearch() {
-  if (!connectionReady) return;
+/* زر البحث */
+searchButton.addEventListener("click", function() {
+  applySearch();
+});
 
-  const kind = document.getElementById("kind").value;
-  const area = document.getElementById("area").value;
+/* الضغط على بطاقات الأقسام يختار القسم ويشغّل البحث */
+document.querySelectorAll(".category-card").forEach(function(card) {
+  card.addEventListener("click", function() {
+    kindSelect.value = card.dataset.kind;
+    applySearch();
 
-  const results = allListings.filter(item =>
-    matchesKind(item, kind) && matchesArea(item, area)
-  );
+    document.getElementById("availableListings").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
 
-  renderListings(results);
-
-  messageElement.textContent =
-    `عدد النتائج المطابقة: ${results.length}`;
-}
-
-searchButton.addEventListener("click", applySearch);
-
+/* تغيير الاختيارات ثم الضغط على زر البحث يعرض النتائج المطابقة */
 loadListings();
 </script>
 </body>
