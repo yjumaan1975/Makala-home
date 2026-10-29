@@ -31,7 +31,8 @@ body {
 header {
   background:var(--green);
   color:white;
-  padding:14px 16px;
+  padding:12px 16px;
+  position:relative;
 }
 nav,.wrap {
   max-width:1000px;
@@ -48,14 +49,19 @@ nav {
   font-weight:800;
   color:var(--gold);
 }
-nav a {
-  color:white;
-  text-decoration:none;
+.mode-toggle {
+  background:var(--gold);
+  color:var(--green-dark);
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:800;
+  max-width:65%;
 }
 .hero {
   background:var(--green);
   color:white;
-  padding:24px 16px 36px;
+  padding:20px 16px 30px;
 }
 .hero h1 {
   font-size:clamp(25px,5vw,34px);
@@ -110,7 +116,12 @@ section { scroll-margin-top:16px; }
 h2 {
   font-size:22px;
   line-height:1.5;
+  margin:0 0 8px;
+}
+.section-intro {
+  color:var(--muted);
   margin:0 0 14px;
+  font-size:14px;
 }
 .grid {
   display:grid;
@@ -143,6 +154,7 @@ h2 {
   border-color:var(--gold);
   transform:translateY(-2px);
 }
+.category-card:active { transform:scale(.98); }
 .symbol { font-size:29px; }
 .card h3,.category-card h3 {
   margin:5px 0;
@@ -155,6 +167,13 @@ h2 {
   font-size:14px;
 }
 .category-card p { font-weight:400; }
+.category-action {
+  display:inline-block;
+  margin-top:8px;
+  color:var(--green);
+  font-size:13px;
+  font-weight:800;
+}
 .action {
   display:block;
   width:100%;
@@ -198,6 +217,17 @@ h2 {
   font-size:13px;
   color:#526056;
 }
+.hidden { display:none !important; }
+.mode-indicator {
+  display:inline-block;
+  background:#e8eee8;
+  color:var(--green);
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:10px;
+}
 footer {
   text-align:center;
   background:var(--green-dark);
@@ -207,7 +237,7 @@ footer {
 }
 footer p { margin-bottom:0; }
 @media (max-width:480px) {
-  .hero { padding-top:20px; }
+  .hero { padding-top:18px; }
   .wrap { padding:18px 12px; }
   .grid {
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -215,6 +245,7 @@ footer p { margin-bottom:0; }
   }
   .card,.category-card { padding:12px; }
   .category-card h3 { font-size:15px; }
+  .mode-toggle { padding:9px 10px; font-size:13px; }
 }
 </style>
 </head>
@@ -223,16 +254,24 @@ footer p { margin-bottom:0; }
 <header>
   <nav>
     <div class="logo">مكلا هوم</div>
-    <a href="#join">انضم إلى المنصة</a>
+    <button
+      type="button"
+      id="modeToggle"
+      class="mode-toggle"
+      aria-pressed="false">
+      ＋ أعرض خدمتي
+    </button>
   </nav>
 </header>
 
 <section class="hero">
   <div class="wrap">
     <h1>عقارك ومشروعك في مكان واحد</h1>
-    <p>منصة الأراضي والعقارات والخدمات الهندسية والمقاولات في المكلا وحضرموت.</p>
+    <p id="heroDescription">
+      ابحث عن الأراضي والعقارات والمهندسين والمقاولين في المكلا وحضرموت.
+    </p>
 
-    <div class="search">
+    <div class="search" id="searchPanel">
       <label for="kind">ماذا تبحث عنه؟</label>
       <select id="kind">
         <option value="all">جميع العقارات والخدمات</option>
@@ -261,52 +300,61 @@ footer p { margin-bottom:0; }
 
 <main class="wrap">
 
-  <section id="join">
-    <h2>ماذا تريد أن تفعل في مكلا هوم؟</h2>
-
-    <div class="grid">
-      <button type="button" class="category-card"
-        onclick="document.getElementById('availableListings').scrollIntoView({behavior:'smooth'});">
-        <span class="symbol">🔎</span>
-        <h3>طالب الخدمة</h3>
-        <p>ابحث عن الأراضي والعقارات والمهندسين والمقاولين والخدمات.</p>
-      </button>
-
-      <button type="button" class="category-card"
-        onclick="document.getElementById('providerFormSection').scrollIntoView({behavior:'smooth'});">
-        <span class="symbol">🏢</span>
-        <h3>مقدم الخدمة</h3>
-        <p>اعرض عقارك أو أرضك أو خدمتك مجانًا على المنصة.</p>
-      </button>
-    </div>
-  </section>
-
-  <section id="explore" style="margin-top:28px">
-    <h2>استكشف مكلا هوم</h2>
+  <section id="explore">
+    <span id="modeIndicator" class="mode-indicator">وضع البحث</span>
+    <h2 id="exploreHeading">ماذا تريد أن تبحث عنه؟</h2>
+    <p id="exploreIntro" class="section-intro">
+      اختر القسم للوصول إلى الإعلانات المتاحة.
+    </p>
 
     <div class="grid">
       <button type="button" class="category-card" data-kind="land">
         <span class="symbol">🏞️</span>
-        <h3>الأراضي</h3>
-        <p>أراضٍ للبيع ومخططات عقارية.</p>
+        <h3 data-search-title="الأراضي" data-provider-title="أعرض أرضًا">
+          الأراضي
+        </h3>
+        <p data-search-description="أراضٍ للبيع ومخططات عقارية."
+           data-provider-description="أضف إعلان أرض للبيع أو الاستثمار.">
+          أراضٍ للبيع ومخططات عقارية.
+        </p>
+        <span class="category-action" data-action-label>استكشف الأراضي ←</span>
       </button>
 
       <button type="button" class="category-card" data-kind="home">
         <span class="symbol">🏠</span>
-        <h3>العقارات</h3>
-        <p>منازل وشقق وعقارات متنوعة.</p>
+        <h3 data-search-title="العقارات" data-provider-title="أعرض عقاري">
+          العقارات
+        </h3>
+        <p data-search-description="منازل وشقق وعقارات متنوعة."
+           data-provider-description="أضف إعلان منزل أو شقة أو عقار.">
+          منازل وشقق وعقارات متنوعة.
+        </p>
+        <span class="category-action" data-action-label>استكشف العقارات ←</span>
       </button>
 
       <button type="button" class="category-card" data-kind="contracting">
         <span class="symbol">🏗️</span>
-        <h3>المقاولات</h3>
-        <p>مشاريع وتنفيذ وأعمال بناء.</p>
+        <h3 data-search-title="المقاولات" data-provider-title="أقدم مقاولات">
+          المقاولات
+        </h3>
+        <p data-search-description="مشاريع وتنفيذ وأعمال بناء."
+           data-provider-description="اعرض خدمات البناء والتنفيذ والترميم.">
+          مشاريع وتنفيذ وأعمال بناء.
+        </p>
+        <span class="category-action" data-action-label>ابحث عن مقاول ←</span>
       </button>
 
       <button type="button" class="category-card" data-kind="engineering">
         <span class="symbol">📐</span>
-        <h3>الخدمات الهندسية</h3>
-        <p>مهندسون ومكاتب واستشارات.</p>
+        <h3 data-search-title="الخدمات الهندسية"
+            data-provider-title="أقدم خدمات هندسية">
+          الخدمات الهندسية
+        </h3>
+        <p data-search-description="مهندسون ومكاتب واستشارات."
+           data-provider-description="اعرض خدماتك الهندسية أو الاستشارية.">
+          مهندسون ومكاتب واستشارات.
+        </p>
+        <span class="category-action" data-action-label>ابحث عن مهندس ←</span>
       </button>
     </div>
   </section>
@@ -318,26 +366,28 @@ footer p { margin-bottom:0; }
     </div>
   </section>
 
-  <section id="providerFormSection" style="margin-top:28px">
-    <h2>مقدم الخدمة — سجّل إعلانك مجانًا</h2>
+  <section id="providerFormSection" class="hidden" style="margin-top:28px">
+    <h2 id="providerFormHeading">سجّل إعلانك مجانًا</h2>
+    <p class="section-intro">
+      أكمل البيانات التالية لتجهيز طلب إعلانك عبر واتساب.
+    </p>
 
     <div class="card">
       <p>
-        هل أنت مالك أرض أو عقار، أو مهندس، أو مقاول، أو مورد مواد بناء،
-        أو عامل؟ سجّل تفاصيل إعلانك لطلب عرضه على مكلا هوم.
+        هذا النموذج مناسب لملاك الأراضي والعقارات والمهندسين والمقاولين.
+        التسجيل مجاني، ويحتاج الإعلان إلى مراجعة الإدارة قبل نشره.
       </p>
 
       <p class="form-note">
-        التسجيل مجاني. سيحتاج الإعلان إلى مراجعة الإدارة قبل نشره.
-        إرسال النموذج عبر واتساب لا يعني أن الإعلان نُشر أو حُفظ تلقائيًا في قاعدة البيانات.
+        تنبيه: إرسال النموذج عبر واتساب لا يعني أن الإعلان نُشر
+        أو حُفظ تلقائيًا في قاعدة البيانات.
       </p>
 
       <form id="providerForm">
         <label for="providerName">اسم المعلن أو المؤسسة *</label>
         <input id="providerName" name="providerName"
           type="text" maxlength="100" required
-          autocomplete="name"
-          placeholder="الاسم أو اسم المكتب">
+          autocomplete="name" placeholder="الاسم أو اسم المكتب">
 
         <label for="providerType">نوع الإعلان *</label>
         <select id="providerType" name="providerType" required>
@@ -386,6 +436,11 @@ footer p { margin-bottom:0; }
         <button type="submit" style="width:100%;margin-top:16px">
           تجهيز طلب الإعلان عبر واتساب
         </button>
+
+        <button type="button" id="cancelProvider"
+          style="width:100%;margin-top:10px;background:#e9ece7">
+          العودة إلى البحث
+        </button>
       </form>
 
       <p id="providerMessage" class="note" aria-live="polite"></p>
@@ -405,11 +460,10 @@ footer p { margin-bottom:0; }
 <script>
 "use strict";
 
-/* إعدادات مشروع Supabase */
+/* إعدادات Supabase */
 const SUPABASE_URL =
   "https://avmdfbpmmysmqpeikezp.supabase.co";
 
-/* المفتاح العام للمشروع فقط، وليس مفتاح service_role */
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_qn9wO7laXdy9FPyx5oxDew_usfkJhX_";
 
@@ -420,9 +474,18 @@ const kindSelect = document.getElementById("kind");
 const areaSelect = document.getElementById("area");
 const providerForm = document.getElementById("providerForm");
 const providerMessage = document.getElementById("providerMessage");
+const providerFormSection = document.getElementById("providerFormSection");
+const availableListings = document.getElementById("availableListings");
+const modeToggle = document.getElementById("modeToggle");
+const exploreHeading = document.getElementById("exploreHeading");
+const exploreIntro = document.getElementById("exploreIntro");
+const modeIndicator = document.getElementById("modeIndicator");
+const heroDescription = document.getElementById("heroDescription");
+const searchPanel = document.getElementById("searchPanel");
 
 let allListings = [];
 let connectionReady = false;
+let currentMode = "search";
 
 function safeText(value) {
   return String(value ?? "").replace(/[&<>"']/g, function(ch) {
@@ -554,6 +617,104 @@ function normalizePhone(value) {
   return phone;
 }
 
+/* تبديل المنصة بين البحث وتقديم الخدمة */
+function setMode(mode) {
+  currentMode = mode;
+
+  const isProvider = mode === "provider";
+
+  modeToggle.textContent = isProvider
+    ? "🔎 أبحث عن خدمة"
+    : "＋ أعرض خدمتي";
+
+  modeToggle.setAttribute("aria-pressed", String(isProvider));
+
+  searchPanel.classList.toggle("hidden", isProvider);
+  availableListings.classList.toggle("hidden", isProvider);
+  providerFormSection.classList.toggle("hidden", !isProvider);
+
+  modeIndicator.textContent = isProvider
+    ? "وضع تقديم الخدمة"
+    : "وضع البحث";
+
+  exploreHeading.textContent = isProvider
+    ? "ماذا تريد أن تعرض؟"
+    : "ماذا تريد أن تبحث عنه؟";
+
+  exploreIntro.textContent = isProvider
+    ? "اختر القسم المناسب لتسجيل إعلانك."
+    : "اختر القسم للوصول إلى الإعلانات المتاحة.";
+
+  heroDescription.textContent = isProvider
+    ? "اعرض أرضك أو عقارك أو خدماتك مجانًا على مكلا هوم."
+    : "ابحث عن الأراضي والعقارات والمهندسين والمقاولين في المكلا وحضرموت.";
+
+  document.querySelectorAll(".category-card[data-kind]").forEach(function(card) {
+    const title = card.querySelector("h3");
+    const description = card.querySelector("p");
+    const action = card.querySelector("[data-action-label]");
+
+    if (isProvider) {
+      title.textContent = title.dataset.providerTitle;
+      description.textContent = description.dataset.providerDescription;
+
+      const labels = {
+        land: "إضافة إعلان أرض ←",
+        home: "إضافة إعلان عقار ←",
+        contracting: "إضافة خدمة مقاولات ←",
+        engineering: "إضافة خدمة هندسية ←"
+      };
+
+      action.textContent = labels[card.dataset.kind];
+    } else {
+      title.textContent = title.dataset.searchTitle;
+      description.textContent = description.dataset.searchDescription;
+
+      const labels = {
+        land: "استكشف الأراضي ←",
+        home: "استكشف العقارات ←",
+        contracting: "ابحث عن مقاول ←",
+        engineering: "ابحث عن مهندس ←"
+      };
+
+      action.textContent = labels[card.dataset.kind];
+    }
+  });
+
+  if (isProvider) {
+    providerMessage.textContent = "";
+  }
+}
+
+function chooseProviderType(kind) {
+  const types = {
+    land: "أرض",
+    home: "عقار أو منزل أو شقة",
+    contracting: "مقاولات وبناء",
+    engineering: "خدمات هندسية"
+  };
+
+  document.getElementById("providerType").value = types[kind] || "";
+
+  const headings = {
+    land: "سجّل إعلان أرضك مجانًا",
+    home: "سجّل إعلان عقارك مجانًا",
+    contracting: "سجّل خدمة المقاولات مجانًا",
+    engineering: "سجّل خدمتك الهندسية مجانًا"
+  };
+
+  document.getElementById("providerFormHeading").textContent =
+    headings[kind] || "سجّل إعلانك مجانًا";
+
+  providerMessage.textContent = "";
+
+  providerFormSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+/* عرض الإعلانات المنشورة */
 function renderListings(items) {
   if (!items.length) {
     listingsElement.innerHTML =
@@ -647,8 +808,7 @@ async function loadListings() {
   }
 
   if (!SUPABASE_PUBLISHABLE_KEY) {
-    messageElement.textContent =
-      "مفتاح الاتصال العام غير موجود.";
+    messageElement.textContent = "مفتاح الاتصال العام غير موجود.";
     return;
   }
 
@@ -706,23 +866,50 @@ async function loadListings() {
   }
 }
 
-/* زر البحث */
-searchButton.addEventListener("click", applySearch);
+/* الزر العلوي يغيّر وظيفة الأقسام */
+modeToggle.addEventListener("click", function() {
+  setMode(currentMode === "search" ? "provider" : "search");
 
-/* أزرار أقسام الأراضي والعقارات والخدمات */
+  document.getElementById("explore").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+/* كل قسم يتصرف حسب الوضع الحالي */
 document.querySelectorAll(".category-card[data-kind]").forEach(function(card) {
   card.addEventListener("click", function() {
-    kindSelect.value = card.dataset.kind;
+    const kind = card.dataset.kind;
+
+    if (currentMode === "provider") {
+      chooseProviderType(kind);
+      return;
+    }
+
+    kindSelect.value = kind;
     applySearch();
 
-    document.getElementById("availableListings").scrollIntoView({
+    availableListings.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
   });
 });
 
-/* نموذج مقدم الخدمة: تجهيز رسالة طلب إعلان مجاني */
+/* زر البحث */
+searchButton.addEventListener("click", applySearch);
+
+/* العودة إلى وضع البحث */
+document.getElementById("cancelProvider").addEventListener("click", function() {
+  setMode("search");
+
+  document.getElementById("explore").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+/* تجهيز طلب الإعلان عبر واتساب */
 providerForm.addEventListener("submit", function(event) {
   event.preventDefault();
 
@@ -759,7 +946,8 @@ providerForm.addEventListener("submit", function(event) {
   window.open(whatsappURL, "_blank", "noopener,noreferrer");
 });
 
-/* تحميل الإعلانات المنشورة */
+/* يبدأ الموقع بوضع البحث */
+setMode("search");
 loadListings();
 </script>
 </body>
