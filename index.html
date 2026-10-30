@@ -31,7 +31,7 @@ body {
 header {
   background:var(--green);
   color:white;
-  padding:12px 16px;
+  padding:13px 16px;
   position:relative;
 }
 nav,.wrap {
@@ -45,19 +45,30 @@ nav {
   gap:12px;
 }
 .logo {
-  font-size:23px;
-  font-weight:800;
+  font-size:25px;
+  font-weight:900;
   color:var(--gold);
 }
 .mode-toggle {
   background:var(--gold);
   color:var(--green-dark);
-  padding:10px 14px;
-  border-radius:10px;
-  font-size:14px;
-  font-weight:800;
-  max-width:65%;
+  padding:13px 20px;
+  border-radius:12px;
+  font-size:17px;
+  font-weight:900;
+  max-width:70%;
+  min-height:52px;
+  border:2px solid #edcf91;
+  box-shadow:0 4px 12px #00000030;
+  letter-spacing:.1px;
+  transition:transform .15s,box-shadow .15s;
 }
+.mode-toggle:hover {
+  transform:translateY(-2px);
+  box-shadow:0 6px 15px #00000040;
+}
+.mode-toggle:active { transform:scale(.97); }
+
 .hero {
   background:var(--green);
   color:white;
@@ -228,6 +239,36 @@ h2 {
   font-weight:800;
   margin-bottom:10px;
 }
+.image-upload-box {
+  border:2px dashed #c9d2c9;
+  background:#fafbf8;
+  padding:14px;
+  border-radius:12px;
+  margin-top:8px;
+}
+.image-upload-box input {
+  border:0;
+  background:transparent;
+  padding:8px 0;
+}
+.image-help {
+  font-size:12px;
+  color:#657067;
+  margin:5px 0 0;
+}
+.image-preview-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+.image-preview-grid img {
+  width:100%;
+  height:100px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
 footer {
   text-align:center;
   background:var(--green-dark);
@@ -236,6 +277,7 @@ footer {
   margin-top:20px;
 }
 footer p { margin-bottom:0; }
+
 @media (max-width:480px) {
   .hero { padding-top:18px; }
   .wrap { padding:18px 12px; }
@@ -245,7 +287,13 @@ footer p { margin-bottom:0; }
   }
   .card,.category-card { padding:12px; }
   .category-card h3 { font-size:15px; }
-  .mode-toggle { padding:9px 10px; font-size:13px; }
+  .mode-toggle {
+    padding:12px 13px;
+    font-size:16px;
+    min-height:50px;
+  }
+  .logo { font-size:22px; }
+  .image-preview-grid img { height:85px; }
 }
 </style>
 </head>
@@ -310,9 +358,7 @@ footer p { margin-bottom:0; }
     <div class="grid">
       <button type="button" class="category-card" data-kind="land">
         <span class="symbol">🏞️</span>
-        <h3 data-search-title="الأراضي" data-provider-title="أعرض أرضًا">
-          الأراضي
-        </h3>
+        <h3 data-search-title="الأراضي" data-provider-title="أعرض أرضًا">الأراضي</h3>
         <p data-search-description="أراضٍ للبيع ومخططات عقارية."
            data-provider-description="أضف إعلان أرض للبيع أو الاستثمار.">
           أراضٍ للبيع ومخططات عقارية.
@@ -322,9 +368,7 @@ footer p { margin-bottom:0; }
 
       <button type="button" class="category-card" data-kind="home">
         <span class="symbol">🏠</span>
-        <h3 data-search-title="العقارات" data-provider-title="أعرض عقاري">
-          العقارات
-        </h3>
+        <h3 data-search-title="العقارات" data-provider-title="أعرض عقاري">العقارات</h3>
         <p data-search-description="منازل وشقق وعقارات متنوعة."
            data-provider-description="أضف إعلان منزل أو شقة أو عقار.">
           منازل وشقق وعقارات متنوعة.
@@ -334,9 +378,7 @@ footer p { margin-bottom:0; }
 
       <button type="button" class="category-card" data-kind="contracting">
         <span class="symbol">🏗️</span>
-        <h3 data-search-title="المقاولات" data-provider-title="أقدم مقاولات">
-          المقاولات
-        </h3>
+        <h3 data-search-title="المقاولات" data-provider-title="أقدم مقاولات">المقاولات</h3>
         <p data-search-description="مشاريع وتنفيذ وأعمال بناء."
            data-provider-description="اعرض خدمات البناء والتنفيذ والترميم.">
           مشاريع وتنفيذ وأعمال بناء.
@@ -347,9 +389,7 @@ footer p { margin-bottom:0; }
       <button type="button" class="category-card" data-kind="engineering">
         <span class="symbol">📐</span>
         <h3 data-search-title="الخدمات الهندسية"
-            data-provider-title="أقدم خدمات هندسية">
-          الخدمات الهندسية
-        </h3>
+            data-provider-title="أقدم خدمات هندسية">الخدمات الهندسية</h3>
         <p data-search-description="مهندسون ومكاتب واستشارات."
            data-provider-description="اعرض خدماتك الهندسية أو الاستشارية.">
           مهندسون ومكاتب واستشارات.
@@ -369,7 +409,7 @@ footer p { margin-bottom:0; }
   <section id="providerFormSection" class="hidden" style="margin-top:28px">
     <h2 id="providerFormHeading">سجّل إعلانك مجانًا</h2>
     <p class="section-intro">
-      أكمل البيانات التالية لتجهيز طلب إعلانك عبر واتساب.
+      أكمل البيانات التالية لتجهيز طلب إعلانك.
     </p>
 
     <div class="card">
@@ -379,8 +419,8 @@ footer p { margin-bottom:0; }
       </p>
 
       <p class="form-note">
-        تنبيه: إرسال النموذج عبر واتساب لا يعني أن الإعلان نُشر
-        أو حُفظ تلقائيًا في قاعدة البيانات.
+        تنبيه: تجهيز رسالة واتساب لا يعني أن الإعلان نُشر أو حُفظ تلقائيًا
+        في قاعدة البيانات.
       </p>
 
       <form id="providerForm">
@@ -433,6 +473,26 @@ footer p { margin-bottom:0; }
           <option value="واتساب واتصال">واتساب واتصال</option>
         </select>
 
+        <label for="providerImages">صور الإعلان أو المخطط (اختياري)</label>
+        <div class="image-upload-box">
+          <input
+            id="providerImages"
+            name="providerImages"
+            type="file"
+            accept="image/*"
+            multiple>
+          <p class="image-help">
+            يمكنك اختيار صور الأرض أو العقار أو المشروع أو الخدمة.
+            يمكنك اختيار أكثر من صورة.
+          </p>
+          <div id="imagePreview" class="image-preview-grid"></div>
+        </div>
+
+        <p class="form-note">
+          الصور المختارة تظهر للمعاينة على جهازك فقط في هذه المرحلة.
+          بعد فتح واتساب أرفق الصور يدوياً مع الرسالة.
+        </p>
+
         <button type="submit" style="width:100%;margin-top:16px">
           تجهيز طلب الإعلان عبر واتساب
         </button>
@@ -482,10 +542,13 @@ const exploreIntro = document.getElementById("exploreIntro");
 const modeIndicator = document.getElementById("modeIndicator");
 const heroDescription = document.getElementById("heroDescription");
 const searchPanel = document.getElementById("searchPanel");
+const providerImages = document.getElementById("providerImages");
+const imagePreview = document.getElementById("imagePreview");
 
 let allListings = [];
 let connectionReady = false;
 let currentMode = "search";
+let previewObjectUrls = [];
 
 function safeText(value) {
   return String(value ?? "").replace(/[&<>"']/g, function(ch) {
@@ -616,6 +679,50 @@ function normalizePhone(value) {
 
   return phone;
 }
+
+/* معاينة الصور المختارة */
+function clearImagePreview() {
+  previewObjectUrls.forEach(url => URL.revokeObjectURL(url));
+  previewObjectUrls = [];
+  imagePreview.innerHTML = "";
+}
+
+providerImages.addEventListener("change", function() {
+  clearImagePreview();
+
+  const files = Array.from(providerImages.files || []);
+  const validFiles = files.filter(file =>
+    file.type.startsWith("image/")
+  );
+
+  if (validFiles.length !== files.length) {
+    providerMessage.textContent =
+      "تم تجاهل الملفات التي ليست صورًا.";
+  }
+
+  if (validFiles.length > 10) {
+    providerMessage.textContent =
+      "يمكنك اختيار 10 صور كحد أقصى في هذه المرحلة.";
+    providerImages.value = "";
+    return;
+  }
+
+  validFiles.forEach(function(file) {
+    const url = URL.createObjectURL(file);
+    previewObjectUrls.push(url);
+
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = file.name;
+    imagePreview.appendChild(img);
+  });
+
+  if (validFiles.length) {
+    providerMessage.textContent =
+      "تم اختيار " + validFiles.length +
+      " صورة للمعاينة. أرفقها يدوياً في واتساب بعد فتحه.";
+  }
+});
 
 /* تبديل المنصة بين البحث وتقديم الخدمة */
 function setMode(mode) {
@@ -922,6 +1029,7 @@ providerForm.addEventListener("submit", function(event) {
   };
 
   const phone = value("providerPhone");
+  const selectedImages = Array.from(providerImages.files || []);
 
   const message = [
     "طلب إضافة إعلان مجاني - مكلا هوم",
@@ -933,6 +1041,10 @@ providerForm.addEventListener("submit", function(event) {
     "السعر: " + (value("providerPrice") || "عند التواصل"),
     "رقم التواصل: " + phone,
     "طريقة التواصل: " + value("providerContact"),
+    "عدد الصور المختارة: " + selectedImages.length,
+    selectedImages.length
+      ? "يرجى إرفاق الصور المختارة يدوياً في هذه المحادثة."
+      : "لم يتم اختيار صور للإعلان.",
     "يرجى مراجعة الإعلان قبل نشره.",
     "هذا الطلب مجاني."
   ].join("\n");
@@ -941,7 +1053,7 @@ providerForm.addEventListener("submit", function(event) {
     "https://wa.me/?text=" + encodeURIComponent(message);
 
   providerMessage.textContent =
-    "سيتم فتح واتساب برسالة مجهزة. اختر جهة الاتصال المناسبة ثم أرسل الرسالة. لم يُحفظ الإعلان في قاعدة البيانات بعد.";
+    "تم تجهيز نص الطلب. افتح واتساب واختر جهة الاتصال المناسبة، ثم أرفق الصور يدوياً إن وجدت وأرسل الرسالة. لم يُحفظ الإعلان في قاعدة البيانات.";
 
   window.open(whatsappURL, "_blank", "noopener,noreferrer");
 });
