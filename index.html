@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#123c32">
-<meta name="description" content="مكلا هوم: منصة الأراضي والعقارات والخدمات الهندسية والمقاولات في المكلا وحضرموت.">
+<meta name="description" content="مكلا هوم: العقارات والخدمات الهندسية والمقاولات في المكلا وحضرموت.">
 <title>مكلا هوم | العقارات والخدمات</title>
 
 <style>
@@ -47,43 +47,26 @@ nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .hero h1{font-size:clamp(25px,5vw,34px);line-height:1.5;margin:0 0 8px}
 .hero p{margin:0 0 18px;color:#e0e9e4}
 .search{
-  background:white;
-  border-radius:14px;
-  padding:15px;
-  color:var(--text);
-  box-shadow:0 5px 18px #00000012
+  background:white;border-radius:14px;padding:15px;
+  color:var(--text);box-shadow:0 5px 18px #00000012
 }
 label{display:block;font-weight:700;margin-top:10px}
 input,select,textarea{
-  display:block;
-  width:100%;
-  padding:12px;
-  margin:5px 0;
-  border:1px solid #ddd;
-  border-radius:9px;
-  font:inherit;
-  background:white;
-  color:var(--text)
+  display:block;width:100%;padding:12px;margin:5px 0;
+  border:1px solid #ddd;border-radius:9px;
+  font:inherit;background:white;color:var(--text)
 }
 textarea{resize:vertical}
 button,.btn{
-  display:inline-block;
-  background:var(--gold);
-  color:#192b23;
-  padding:12px 18px;
-  border:0;
-  border-radius:9px;
-  text-decoration:none;
-  font:inherit;
-  font-weight:700;
-  cursor:pointer
+  display:inline-block;background:var(--gold);
+  color:#192b23;padding:12px 18px;border:0;
+  border-radius:9px;text-decoration:none;
+  font:inherit;font-weight:700;cursor:pointer
 }
 button:disabled{opacity:.55;cursor:not-allowed}
 button:focus-visible,a:focus-visible,
-select:focus-visible,input:focus-visible,
-textarea:focus-visible{
-  outline:3px solid var(--gold);
-  outline-offset:3px
+select:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:3px solid var(--gold);outline-offset:3px
 }
 .search button{width:100%;margin-top:10px}
 .wrap{padding:22px 16px}
@@ -96,47 +79,27 @@ h2{font-size:22px;line-height:1.5;margin:0 0 8px}
   gap:12px
 }
 .card{
-  background:white;
-  border-radius:14px;
-  padding:16px;
-  border:1px solid var(--border);
-  min-width:0;
-  overflow-wrap:anywhere
+  background:white;border-radius:14px;padding:16px;
+  border:1px solid var(--border);min-width:0;overflow-wrap:anywhere
 }
 .category-card{
-  width:100%;
-  min-width:0;
-  text-align:right;
-  color:var(--text);
-  font:inherit;
-  font-weight:400;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:17px;
-  cursor:pointer
+  width:100%;min-width:0;text-align:right;color:var(--text);
+  font:inherit;font-weight:400;background:white;
+  border:1px solid var(--border);border-radius:14px;
+  padding:17px;cursor:pointer
 }
 .category-card:hover{border-color:var(--gold)}
 .symbol{font-size:29px}
 .card h3,.category-card h3{margin:5px 0;font-size:17px;font-weight:800}
 .card p,.category-card p{margin:4px 0;color:var(--muted);font-size:14px}
 .category-action{
-  display:inline-block;
-  margin-top:8px;
-  color:var(--green);
-  font-size:13px;
-  font-weight:800
+  display:inline-block;margin-top:8px;color:var(--green);
+  font-size:13px;font-weight:800
 }
 .action{
-  display:block;
-  width:100%;
-  text-align:center;
-  background:var(--green);
-  color:white;
-  padding:11px;
-  border-radius:10px;
-  text-decoration:none;
-  margin-top:12px;
+  display:block;width:100%;text-align:center;
+  background:var(--green);color:white;padding:11px;
+  border-radius:10px;text-decoration:none;margin-top:12px;
   font-weight:700
 }
 .action:hover{background:var(--green-dark)}
@@ -144,112 +107,87 @@ h2{font-size:22px;line-height:1.5;margin:0 0 8px}
 #searchMessage{margin:10px 0 0;color:#526056}
 #listings{margin-top:8px}
 .listing-image{
-  display:block;
-  width:100%;
-  height:190px;
-  object-fit:cover;
-  border-radius:10px;
-  margin-bottom:8px;
-  background:#eee
+  display:block;width:100%;height:190px;object-fit:cover;
+  border-radius:10px;margin-bottom:8px;background:#eee
 }
 .price{color:var(--green)!important;font-weight:800;font-size:17px!important}
 .status{color:#657067;font-size:13px}
 .empty-state{grid-column:1/-1;text-align:center;padding:22px}
 .form-note{
-  background:#f5f6f2;
-  border-radius:9px;
-  padding:10px;
-  font-size:13px;
-  color:#526056
+  background:#f5f6f2;border-radius:9px;padding:10px;
+  font-size:13px;color:#526056
 }
 .hidden{display:none!important}
 .mode-indicator{
-  display:inline-block;
-  background:#e8eee8;
-  color:var(--green);
-  padding:5px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:800;
-  margin-bottom:10px
+  display:inline-block;background:#e8eee8;color:var(--green);
+  padding:5px 10px;border-radius:20px;font-size:12px;
+  font-weight:800;margin-bottom:10px
 }
 .image-upload-box{
-  border:2px dashed #c9d2c9;
-  background:#fafbf8;
-  padding:14px;
-  border-radius:12px;
-  margin-top:8px
+  border:2px dashed #c9d2c9;background:#fafbf8;
+  padding:14px;border-radius:12px;margin-top:8px
 }
 .image-upload-box input{border:0;background:transparent;padding:8px 0}
 .image-help{font-size:12px;color:#657067;margin:5px 0 0}
 .image-preview-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px;
-  margin-top:12px
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;margin-top:12px
 }
 .image-preview-grid img{
-  width:100%;
-  height:100px;
-  object-fit:cover;
-  border-radius:8px;
-  border:1px solid var(--border)
+  width:100%;height:100px;object-fit:cover;
+  border-radius:8px;border:1px solid var(--border)
 }
 footer{
-  text-align:center;
-  background:var(--green-dark);
-  color:#eee;
-  padding:22px 15px;
-  margin-top:20px
+  text-align:center;background:var(--green-dark);
+  color:#eee;padding:22px 15px;margin-top:20px
 }
 footer p{margin-bottom:0}
 .auth-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:14px
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px
 }
 .auth-actions button{width:100%}
 .message{font-size:14px;margin-top:12px;white-space:pre-wrap}
 .success{color:#176b39}
 .error{color:#a32626}
 .account-bar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#e8eee8;
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:14px
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;background:#e8eee8;
+  padding:12px;border-radius:10px;margin-bottom:14px
 }
 .password-wrap{position:relative;display:flex;align-items:center}
 .password-wrap input{padding-left:68px}
 .password-toggle{
-  position:absolute;
-  left:7px;
-  top:50%;
-  transform:translateY(-50%);
-  padding:7px 10px;
-  background:#e8eee8;
-  color:#123c32;
-  font-size:13px;
+  position:absolute;left:7px;top:50%;
+  transform:translateY(-50%);padding:7px 10px;
+  background:#e8eee8;color:#123c32;font-size:13px;
   border:1px solid #d5ded5
 }
-.password-toggle:hover{background:#dce8dc}
 .forgot-password{
-  display:inline-block;
-  margin-top:8px;
-  color:#123c32;
-  font-weight:800;
-  text-decoration:underline;
-  cursor:pointer;
-  background:transparent;
-  padding:4px 0;
-  border:0
+  display:inline-block;margin-top:8px;color:#123c32;
+  font-weight:800;text-decoration:underline;cursor:pointer;
+  background:transparent;padding:4px 0;border:0
 }
 .recovery-card{margin-top:14px;border:2px solid #d8b46a}
+.admin-panel{
+  border:2px solid var(--gold);
+  margin-top:25px
+}
+.admin-heading{
+  background:var(--green);color:white;
+  padding:15px;border-radius:10px;margin-bottom:15px
+}
+.admin-heading h2{color:var(--gold)}
+.admin-count{
+  display:inline-block;background:var(--gold);
+  color:var(--green);padding:5px 15px;
+  border-radius:20px;font-weight:900
+}
+.admin-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.approve-button{background:#176b39;color:white;width:100%}
+.reject-button{background:#a32626;color:white;width:100%}
+.admin-card{border:1px solid #d8b46a}
+.admin-card img{margin-top:8px}
+.admin-date{font-size:12px;color:#777}
 @media(max-width:480px){
   .hero{padding-top:18px}
   .wrap{padding:18px 12px}
@@ -268,7 +206,7 @@ footer p{margin-bottom:0}
 <header>
 <nav>
   <div class="logo">مكلا هوم</div>
-  <button type="button" id="modeToggle" class="mode-toggle" aria-pressed="false">
+  <button type="button" id="modeToggle" class="mode-toggle">
     ＋ أعرض خدمتي
   </button>
 </nav>
@@ -299,7 +237,7 @@ footer p{margin-bottom:0}
     </select>
 
     <button id="searchButton" type="button">ابحث الآن</button>
-    <p id="searchMessage" class="note" aria-live="polite">جارٍ تحميل الإعلانات...</p>
+    <p id="searchMessage" class="note">جارٍ تحميل الإعلانات...</p>
   </div>
 </div>
 </section>
@@ -312,6 +250,7 @@ footer p{margin-bottom:0}
   <p id="exploreIntro" class="section-intro">اختر القسم للوصول إلى الإعلانات المتاحة.</p>
 
   <div class="grid">
+
     <button type="button" class="category-card" data-kind="land">
       <span class="symbol">🏞️</span>
       <h3 data-search-title="الأراضي" data-provider-title="أعرض أرضًا">الأراضي</h3>
@@ -339,12 +278,13 @@ footer p{margin-bottom:0}
       <p data-search-description="مهندسون ومكاتب واستشارات." data-provider-description="اعرض خدماتك الهندسية أو الاستشارية.">مهندسون ومكاتب واستشارات.</p>
       <span class="category-action" data-action-label>ابحث عن مهندس ←</span>
     </button>
+
   </div>
 </section>
 
 <section id="availableListings" style="margin-top:28px">
   <h2>الإعلانات المتاحة</h2>
-  <div id="listings" class="grid" aria-live="polite">
+  <div id="listings" class="grid">
     <div class="card empty-state">جارٍ تحميل الإعلانات...</div>
   </div>
 </section>
@@ -355,22 +295,22 @@ footer p{margin-bottom:0}
 
   <div id="authPanel" class="card">
     <h3>حساب مقدم الخدمة</h3>
-    <p class="form-note">لإضافة إعلانك، أنشئ حسابًا بالبريد الإلكتروني وكلمة المرور. رقم الهاتف يُستخدم للتواصل معك فقط.</p>
+    <p class="form-note">أنشئ حسابًا بالبريد الإلكتروني وكلمة المرور. رقم الهاتف للتواصل فقط.</p>
 
     <div id="registerFields">
       <label for="accountName">الاسم أو اسم المؤسسة *</label>
-      <input id="accountName" type="text" maxlength="100" autocomplete="name" placeholder="الاسم الكامل">
+      <input id="accountName" type="text" maxlength="100" autocomplete="name">
 
       <label for="accountPhone">رقم الهاتف للتواصل *</label>
-      <input id="accountPhone" type="tel" maxlength="25" inputmode="tel" autocomplete="tel" placeholder="رقم الهاتف">
+      <input id="accountPhone" type="tel" maxlength="25" autocomplete="tel">
     </div>
 
     <label for="accountEmail">البريد الإلكتروني *</label>
-    <input id="accountEmail" type="email" autocomplete="email" placeholder="example@email.com">
+    <input id="accountEmail" type="email" autocomplete="email">
 
     <label for="accountPassword">كلمة المرور *</label>
     <div class="password-wrap">
-      <input id="accountPassword" type="password" minlength="6" autocomplete="current-password" placeholder="ستة أحرف على الأقل">
+      <input id="accountPassword" type="password" minlength="6" autocomplete="current-password">
       <button type="button" class="password-toggle" data-toggle-password="accountPassword">إظهار</button>
     </div>
 
@@ -380,40 +320,41 @@ footer p{margin-bottom:0}
     </div>
 
     <button type="button" id="forgotPasswordButton" class="forgot-password">نسيت كلمة المرور؟</button>
-    <p id="authMessage" class="message" aria-live="polite"></p>
+    <p id="authMessage" class="message"></p>
   </div>
 
   <div id="recoveryPanel" class="card recovery-card hidden">
     <h3>إعادة تعيين كلمة المرور</h3>
-    <p class="form-note">أدخل كلمة مرور جديدة لحسابك، ثم أعد إدخالها للتأكيد.</p>
 
     <label for="newPassword">كلمة المرور الجديدة *</label>
     <div class="password-wrap">
-      <input id="newPassword" type="password" minlength="6" autocomplete="new-password" placeholder="ستة أحرف على الأقل">
+      <input id="newPassword" type="password" minlength="6">
       <button type="button" class="password-toggle" data-toggle-password="newPassword">إظهار</button>
     </div>
 
     <label for="confirmNewPassword">تأكيد كلمة المرور الجديدة *</label>
     <div class="password-wrap">
-      <input id="confirmNewPassword" type="password" minlength="6" autocomplete="new-password" placeholder="أعد كتابة كلمة المرور">
+      <input id="confirmNewPassword" type="password" minlength="6">
       <button type="button" class="password-toggle" data-toggle-password="confirmNewPassword">إظهار</button>
     </div>
 
     <button type="button" id="saveNewPasswordButton" style="width:100%;margin-top:14px">حفظ كلمة المرور الجديدة</button>
-    <p id="recoveryMessage" class="message" aria-live="polite"></p>
+    <p id="recoveryMessage" class="message"></p>
   </div>
 
   <div id="providerAccount" class="card hidden">
+
     <div class="account-bar">
       <span id="signedInName">تم تسجيل الدخول</span>
       <button type="button" id="logoutButton">تسجيل الخروج</button>
     </div>
 
-    <p class="form-note">حسابك جاهز. يمكنك الآن إضافة إعلانك. سيبقى الإعلان قيد مراجعة الإدارة حتى الموافقة عليه.</p>
+    <p class="form-note">حسابك جاهز. سيبقى إعلانك قيد مراجعة الإدارة حتى الموافقة عليه.</p>
 
     <form id="providerForm">
+
       <label for="providerName">اسم المعلن أو المؤسسة *</label>
-      <input id="providerName" type="text" maxlength="100" required autocomplete="name">
+      <input id="providerName" type="text" maxlength="100" required>
 
       <label for="providerType">نوع الإعلان *</label>
       <select id="providerType" required>
@@ -427,19 +368,19 @@ footer p{margin-bottom:0}
       </select>
 
       <label for="providerTitle">عنوان الإعلان *</label>
-      <input id="providerTitle" type="text" maxlength="150" required placeholder="مثال: أرض للبيع في المكلا">
+      <input id="providerTitle" type="text" maxlength="150" required>
 
       <label for="providerArea">المنطقة أو الموقع *</label>
-      <input id="providerArea" type="text" maxlength="150" required placeholder="مثال: الديس - المكلا">
+      <input id="providerArea" type="text" maxlength="150" required>
 
       <label for="providerDescription">تفاصيل الإعلان *</label>
-      <textarea id="providerDescription" maxlength="1500" rows="4" required placeholder="اكتب وصف العقار أو الخدمة والمساحة والتفاصيل المهمة"></textarea>
+      <textarea id="providerDescription" maxlength="1500" rows="4" required></textarea>
 
       <label for="providerPrice">السعر (اختياري)</label>
-      <input id="providerPrice" type="text" maxlength="50" placeholder="السعر أو قابل للتفاوض">
+      <input id="providerPrice" type="text" maxlength="50">
 
       <label for="providerPhone">رقم التواصل أو واتساب *</label>
-      <input id="providerPhone" type="tel" maxlength="25" required inputmode="tel" autocomplete="tel">
+      <input id="providerPhone" type="tel" maxlength="25" required>
 
       <label for="providerContact">طريقة التواصل المفضلة</label>
       <select id="providerContact">
@@ -451,24 +392,51 @@ footer p{margin-bottom:0}
       <label for="providerImages">صور الإعلان أو المخطط (اختياري)</label>
       <div class="image-upload-box">
         <input id="providerImages" type="file" accept="image/jpeg,image/png,image/webp" multiple>
-        <p class="image-help">حتى 10 صور، وبحد أقصى 5 ميجابايت للصورة. الصيغ المقبولة: JPG وPNG وWebP.</p>
+        <p class="image-help">حتى 10 صور، بحد أقصى 5 ميجابايت للصورة.</p>
         <div id="imagePreview" class="image-preview-grid"></div>
       </div>
 
-      <p class="form-note">سيتم حفظ الإعلان بحالة «قيد المراجعة». لن يظهر للزوار إلا بعد موافقة الإدارة.</p>
+      <p class="form-note">سيتم حفظ الإعلان بحالة قيد المراجعة ولن يظهر للزوار إلا بعد موافقة الإدارة.</p>
+
       <button type="submit" id="submitListingButton" style="width:100%;margin-top:16px">حفظ الإعلان وإرسال الصور للمراجعة</button>
       <button type="button" id="cancelProvider" style="width:100%;margin-top:10px;background:#e9ece7">العودة إلى البحث</button>
+
     </form>
 
-    <p id="providerMessage" class="message" aria-live="polite"></p>
+    <p id="providerMessage" class="message"></p>
   </div>
 </section>
+
+<!-- لوحة الإدارة -->
+<section id="adminPanel" class="card admin-panel hidden">
+
+  <div class="admin-heading">
+    <h2>🛡️ لوحة إدارة مكلا هوم</h2>
+    <p>مرحبًا بك في لوحة مراجعة الإعلانات.</p>
+    <strong>الإعلانات قيد المراجعة: </strong>
+    <span id="pendingCount" class="admin-count">0</span>
+  </div>
+
+  <div class="account-bar">
+    <strong>إدارة الإعلانات</strong>
+    <button type="button" id="refreshAdminButton">تحديث القائمة ↻</button>
+  </div>
+
+  <div id="adminListings" class="grid">
+    <div class="card">جارٍ تحميل الإعلانات...</div>
+  </div>
+
+  <p id="adminMessage" class="message"></p>
+
+</section>
+
 </main>
 
 <footer>
   <strong>مكلا هوم</strong>
   <p>عقارك ومشروعك في مكان واحد بسعر مناسب وجودة وضمان</p>
   <p class="note">إضافة الإعلانات مجانية، والنشر بعد مراجعة الإدارة.</p>
+  <p>للتواصل: +967 738 943 361</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -477,9 +445,14 @@ footer p{margin-bottom:0}
 "use strict";
 
 /* إعداد الاتصال */
+
 const SUPABASE_URL="https://avmdfbpmmysmqpeikezp.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_qn9wO7laXdy9FPyx5oxDew_usfkJhX_";
-const RECOVERY_REDIRECT_URL="https://yjumaan1975.github.io/Makala-home/";
+
+const SUPABASE_PUBLISHABLE_KEY=
+"sb_publishable_qn9wO7laXdy9FPyx5oxDew_usfkJhX_";
+
+const RECOVERY_REDIRECT_URL=
+"https://yjumaan1975.github.io/Makala-home/";
 
 const CATEGORY_IDS={
   "خدمات هندسية":"8f433f79-ed6e-47d6-bcd9-a0a21458cb7a",
@@ -510,8 +483,10 @@ let currentProfile=null;
 let previewObjectUrls=[];
 let selectedFiles=[];
 let recoveryMode=false;
+let profileLoadVersion=0;
 
 /* أدوات عامة */
+
 function safeText(value){
   return String(value??"").replace(/[&<>"']/g,ch=>({
     "&":"&amp;",
@@ -595,28 +570,24 @@ function safeFileName(name){
     .slice(-80)||"image";
 }
 
-/* الصور والمعاينة */
+/* الصور */
 
-/* إفراغ المعاينة وإلغاء روابط الصور المؤقتة */
 function clearImagePreview(){
   previewObjectUrls.forEach(url=>URL.revokeObjectURL(url));
   previewObjectUrls=[];
   imagePreview.innerHTML="";
 }
 
-/* إفراغ قائمة الصور عند انتهاء الإعلان */
 function clearSelectedImages(){
   selectedFiles=[];
   providerImages.value="";
   clearImagePreview();
 }
 
-/* إرجاع الصور المختارة من القائمة المحفوظة */
 function selectedImageFiles(){
   return [...selectedFiles];
 }
 
-/* فحص عدد الصور وحجمها وصيغها */
 function validateImages(files){
   if(files.length>10){
     return "الحد الأقصى هو 10 صور للإعلان.";
@@ -624,7 +595,7 @@ function validateImages(files){
 
   for(const file of files){
     if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
-      return "يوجد ملف بصيغة غير مدعومة. استخدم JPG أو PNG أو WebP فقط.";
+      return "استخدم JPG أو PNG أو WebP فقط.";
     }
 
     if(file.size>5*1024*1024){
@@ -635,7 +606,6 @@ function validateImages(files){
   return "";
 }
 
-/* إعادة رسم معاينة جميع الصور المختارة */
 function renderImagePreview(){
   clearImagePreview();
 
@@ -653,20 +623,13 @@ function renderImagePreview(){
   setMessage(
     providerMessage,
     selectedFiles.length
-      ?"تم اختيار "+selectedFiles.length+" صور. يمكنك إضافة المزيد حتى 10 صور."
+      ?"تم اختيار "+selectedFiles.length+" صور."
       :"لم يتم اختيار صور بعد."
   );
 }
 
-/*
-  عند اختيار صور جديدة:
-  نضيفها إلى الصور السابقة بدل استبدالها.
-  ثم نفرغ حقل الهاتف مع الاحتفاظ بالملفات في selectedFiles.
-*/
 providerImages.addEventListener("change",()=>{
   const newFiles=Array.from(providerImages.files||[]);
-
-  /* إفراغ حقل الاختيار مع الاحتفاظ بالصور في القائمة */
   providerImages.value="";
 
   if(!newFiles.length)return;
@@ -680,9 +643,7 @@ providerImages.addEventListener("change",()=>{
       existing.lastModified===file.lastModified
     );
 
-    if(!exists){
-      combined.push(file);
-    }
+    if(!exists)combined.push(file);
   });
 
   const error=validateImages(combined);
@@ -696,19 +657,22 @@ providerImages.addEventListener("change",()=>{
   renderImagePreview();
 });
 
-/* التبديل بين البحث وعرض الخدمة */
+/* وضع البحث وتقديم الخدمة */
+
 function setMode(mode){
   currentMode=mode;
   const isProvider=mode==="provider";
 
-  modeToggle.textContent=isProvider?"🔎 أبحث عن خدمة":"＋ أعرض خدمتي";
-  modeToggle.setAttribute("aria-pressed",String(isProvider));
+  modeToggle.textContent=isProvider
+    ?"🔎 أبحث عن خدمة"
+    :"＋ أعرض خدمتي";
 
   $("searchPanel").classList.toggle("hidden",isProvider);
   availableListings.classList.toggle("hidden",isProvider);
   providerFormSection.classList.toggle("hidden",!isProvider);
 
-  $("modeIndicator").textContent=isProvider?"وضع تقديم الخدمة":"وضع البحث";
+  $("modeIndicator").textContent=
+    isProvider?"وضع تقديم الخدمة":"وضع البحث";
 
   $("exploreHeading").textContent=isProvider
     ?"ماذا تريد أن تعرض؟"
@@ -753,9 +717,7 @@ function setMode(mode){
     action.textContent=isProvider?labels[kind]:searchLabels[kind];
   });
 
-  if(isProvider){
-    showAccountState();
-  }
+  if(isProvider)showAccountState();
 }
 
 function chooseProviderType(kind){
@@ -775,7 +737,8 @@ function chooseProviderType(kind){
     engineering:"سجّل خدمتك الهندسية مجانًا"
   };
 
-  $("providerFormHeading").textContent=headings[kind]||"سجّل إعلانك مجانًا";
+  $("providerFormHeading").textContent=
+    headings[kind]||"سجّل إعلانك مجانًا";
 
   providerFormSection.scrollIntoView({
     behavior:"smooth",
@@ -783,9 +746,12 @@ function chooseProviderType(kind){
   });
 }
 
-/* الحساب والملف الشخصي */
+/* قراءة حساب المستخدم وصلاحياته */
+
 function showAccountState(){
+
   const loggedIn=!!currentUser;
+  const isAdmin=currentProfile?.role==="admin";
 
   $("authPanel").classList.toggle(
     "hidden",
@@ -797,40 +763,78 @@ function showAccountState(){
     !loggedIn||recoveryMode
   );
 
-  $("recoveryPanel").classList.toggle("hidden",!recoveryMode);
+  $("recoveryPanel").classList.toggle(
+    "hidden",
+    !recoveryMode
+  );
+
+  $("adminPanel").classList.toggle(
+    "hidden",
+    !loggedIn||!isAdmin||recoveryMode
+  );
 
   if(loggedIn){
-    $("signedInName").textContent="مرحبًا، "+(
-      currentProfile?.full_name||currentUser.email||"مقدم الخدمة"
-    );
 
-    $("providerName").value=currentProfile?.full_name||"";
-    $("providerPhone").value=currentProfile?.phone||"";
+    $("signedInName").textContent=
+      "مرحبًا، "+(
+        currentProfile?.full_name||
+        currentUser.email||
+        "مقدم الخدمة"
+      );
+
+    $("providerName").value=
+      currentProfile?.full_name||"";
+
+    $("providerPhone").value=
+      currentProfile?.phone||"";
+  }
+
+  if(isAdmin&&!recoveryMode){
+    loadAdminListings();
   }
 }
 
 async function ensureProfile(user){
+
   if(!user)return null;
 
-  const found=await client.from("profiles")
+  const result=await client
+    .from("profiles")
     .select("id,full_name,phone,role")
     .eq("id",user.id)
     .maybeSingle();
 
-  if(found.error)throw found.error;
-  if(found.data)return found.data;
+  if(result.error)throw result.error;
+
+  if(result.data)return result.data;
+
+  /*
+    إنشاء ملف مقدم خدمة فقط عند عدم وجود ملف.
+    لا يتم تحويل حساب موجود إلى admin.
+  */
 
   const metadata=user.user_metadata||{};
 
-  const name=metadata.full_name||$("accountName").value.trim()||"";
-  const phone=metadata.phone||$("accountPhone").value.trim()||"";
+  const name=
+    metadata.full_name||
+    $("accountName").value.trim()||
+    "";
 
-  const inserted=await client.from("profiles").insert({
-    id:user.id,
-    full_name:name,
-    phone:phone,
-    role:"provider"
-  }).select("id,full_name,phone,role").single();
+  const phone=
+    metadata.phone||
+    $("accountPhone").value.trim()||
+    "";
+
+  const inserted=await client
+    .from("profiles")
+    .insert({
+      id:user.id,
+      full_name:name,
+      phone:phone,
+      role:"provider"
+    })
+    .select("id,full_name,phone,role")
+    .single();
 
   if(inserted.error)throw inserted.error;
 
@@ -838,29 +842,46 @@ async function ensureProfile(user){
 }
 
 async function handleSession(session){
+
+  const version=++profileLoadVersion;
+
   currentUser=session?.user||null;
   currentProfile=null;
 
-  if(currentUser){
-    try{
-      currentProfile=await ensureProfile(currentUser);
-    }catch(error){
-      console.error("Profile error:",error);
-      setMessage(
-        $("authMessage"),
-        "تم تسجيل الدخول، لكن تعذر قراءة ملف مقدم الخدمة: "+error.message,
-        "error"
-      );
-    }
-  }
-
   showAccountState();
+
+  if(!currentUser)return;
+
+  try{
+
+    const profile=await ensureProfile(currentUser);
+
+    if(version!==profileLoadVersion)return;
+
+    currentProfile=profile;
+
+    showAccountState();
+
+  }catch(error){
+
+    console.error("Profile error:",error);
+
+    setMessage(
+      $("authMessage"),
+      "تم تسجيل الدخول، لكن تعذرت قراءة ملف الحساب: "+error.message,
+      "error"
+    );
+
+    showAccountState();
+  }
 }
 
 /* إنشاء الحساب */
+
 async function registerAccount(){
+
   if(!client){
-    setMessage($("authMessage"),"الاتصال بقاعدة البيانات غير جاهز.","error");
+    setMessage($("authMessage"),"الاتصال غير جاهز.","error");
     return;
   }
 
@@ -870,7 +891,11 @@ async function registerAccount(){
   const password=$("accountPassword").value;
 
   if(!name||!phone||!email||!password){
-    setMessage($("authMessage"),"يرجى تعبئة الاسم ورقم الهاتف والبريد الإلكتروني وكلمة المرور.","error");
+    setMessage(
+      $("authMessage"),
+      "يرجى تعبئة الاسم والهاتف والبريد وكلمة المرور.",
+      "error"
+    );
     return;
   }
 
@@ -884,6 +909,7 @@ async function registerAccount(){
   button.textContent="جارٍ إنشاء الحساب...";
 
   try{
+
     const result=await client.auth.signUp({
       email,
       password,
@@ -898,29 +924,47 @@ async function registerAccount(){
     if(result.error)throw result.error;
 
     if(result.data.session){
+
       await handleSession(result.data.session);
-      setMessage($("providerMessage"),"تم إنشاء الحساب وتسجيل الدخول بنجاح. يمكنك الآن إضافة إعلانك.","success");
-      setMessage($("authMessage"),"تم إنشاء الحساب بنجاح.","success");
+
+      setMessage(
+        $("providerMessage"),
+        "تم إنشاء الحساب وتسجيل الدخول بنجاح.",
+        "success"
+      );
+
     }else{
+
       setMessage(
         $("authMessage"),
-        "تم إرسال طلب إنشاء الحساب. إذا كان تأكيد البريد الإلكتروني مفعّلًا، تحقق من بريدك ثم سجّل الدخول.",
+        "تم إرسال طلب إنشاء الحساب. تحقق من بريدك إذا كان تأكيد البريد مفعّلًا.",
         "success"
       );
     }
+
   }catch(error){
+
     console.error("Registration error:",error);
-    setMessage($("authMessage"),"تعذر إنشاء الحساب: "+error.message,"error");
+
+    setMessage(
+      $("authMessage"),
+      "تعذر إنشاء الحساب: "+error.message,
+      "error"
+    );
+
   }finally{
+
     button.disabled=false;
     button.textContent="إنشاء حساب";
   }
 }
 
 /* تسجيل الدخول */
+
 async function loginAccount(){
+
   if(!client){
-    setMessage($("authMessage"),"الاتصال بقاعدة البيانات غير جاهز.","error");
+    setMessage($("authMessage"),"الاتصال غير جاهز.","error");
     return;
   }
 
@@ -928,7 +972,7 @@ async function loginAccount(){
   const password=$("accountPassword").value;
 
   if(!email||!password){
-    setMessage($("authMessage"),"أدخل البريد الإلكتروني وكلمة المرور.","error");
+    setMessage($("authMessage"),"أدخل البريد وكلمة المرور.","error");
     return;
   }
 
@@ -937,6 +981,7 @@ async function loginAccount(){
   button.textContent="جارٍ تسجيل الدخول...";
 
   try{
+
     const result=await client.auth.signInWithPassword({
       email,
       password
@@ -947,29 +992,40 @@ async function loginAccount(){
     await handleSession(result.data.session);
 
     setMessage(
-      $("providerMessage"),
-      "تم تسجيل الدخول بنجاح. يمكنك الآن إضافة إعلانك.",
+      currentProfile?.role==="admin"
+        ?$("adminMessage")
+        :$("providerMessage"),
+      currentProfile?.role==="admin"
+        ?"تم تسجيل الدخول بصلاحيات المدير."
+        :"تم تسجيل الدخول بنجاح.",
       "success"
     );
+
   }catch(error){
+
     console.error("Login error:",error);
+
     setMessage(
       $("authMessage"),
       "تعذر تسجيل الدخول: "+error.message,
       "error"
     );
+
   }finally{
+
     button.disabled=false;
     button.textContent="تسجيل الدخول";
   }
 }
 
 /* استعادة كلمة المرور */
+
 async function requestPasswordRecovery(){
+
   const email=$("accountEmail").value.trim();
 
   if(!email){
-    setMessage($("authMessage"),"أدخل بريدك الإلكتروني أولًا ثم اضغط نسيت كلمة المرور.","error");
+    setMessage($("authMessage"),"أدخل بريدك الإلكتروني أولًا.","error");
     $("accountEmail").focus();
     return;
   }
@@ -978,6 +1034,7 @@ async function requestPasswordRecovery(){
   button.disabled=true;
 
   try{
+
     const result=await client.auth.resetPasswordForEmail(email,{
       redirectTo:RECOVERY_REDIRECT_URL
     });
@@ -986,28 +1043,34 @@ async function requestPasswordRecovery(){
 
     setMessage(
       $("authMessage"),
-      "إذا كان البريد مسجلًا لدينا، فستصلك رسالة لاستعادة كلمة المرور. افتح الرابط من نفس الجهاز.",
+      "إذا كان البريد مسجلًا لدينا، فستصلك رسالة لاستعادة كلمة المرور.",
       "success"
     );
+
   }catch(error){
-    console.error("Password recovery request error:",error);
-    setMessage($("authMessage"),"تعذر إرسال رابط الاستعادة: "+error.message,"error");
+
+    setMessage(
+      $("authMessage"),
+      "تعذر إرسال رابط الاستعادة: "+error.message,
+      "error"
+    );
+
   }finally{
+
     button.disabled=false;
   }
 }
 
 function showRecoveryPanel(){
+
   recoveryMode=true;
   setMode("provider");
+
   $("authPanel").classList.add("hidden");
   $("providerAccount").classList.add("hidden");
   $("recoveryPanel").classList.remove("hidden");
 
-  setMessage(
-    $("recoveryMessage"),
-    "أدخل كلمة المرور الجديدة لحسابك."
-  );
+  setMessage($("recoveryMessage"),"أدخل كلمة المرور الجديدة.");
 
   providerFormSection.scrollIntoView({
     behavior:"smooth",
@@ -1016,16 +1079,17 @@ function showRecoveryPanel(){
 }
 
 async function saveNewPassword(){
+
   const password=$("newPassword").value;
   const confirm=$("confirmNewPassword").value;
 
   if(!password||!confirm){
-    setMessage($("recoveryMessage"),"يرجى تعبئة حقلي كلمة المرور.","error");
+    setMessage($("recoveryMessage"),"يرجى تعبئة الحقلين.","error");
     return;
   }
 
   if(password.length<6){
-    setMessage($("recoveryMessage"),"كلمة المرور يجب ألا تقل عن 6 أحرف.","error");
+    setMessage($("recoveryMessage"),"كلمة المرور قصيرة.","error");
     return;
   }
 
@@ -1036,9 +1100,9 @@ async function saveNewPassword(){
 
   const button=$("saveNewPasswordButton");
   button.disabled=true;
-  button.textContent="جارٍ حفظ كلمة المرور...";
 
   try{
+
     const result=await client.auth.updateUser({
       password:password
     });
@@ -1047,74 +1111,76 @@ async function saveNewPassword(){
 
     $("newPassword").value="";
     $("confirmNewPassword").value="";
+
     recoveryMode=false;
 
-    if(result.data.user){
-      currentUser=result.data.user;
-      try{
-        currentProfile=await ensureProfile(currentUser);
-      }catch(error){
-        console.error("Profile after password recovery:",error);
-      }
-    }
-
-    showAccountState();
+    await handleSession(result.data.user
+      ?{user:result.data.user}
+      :null
+    );
 
     setMessage(
       $("providerMessage"),
-      "تم تغيير كلمة المرور بنجاح. يمكنك الآن استخدام حسابك.",
+      "تم تغيير كلمة المرور بنجاح.",
       "success"
     );
 
-    providerFormSection.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
   }catch(error){
-    console.error("Save password error:",error);
+
     setMessage(
       $("recoveryMessage"),
       "تعذر تغيير كلمة المرور: "+error.message,
       "error"
     );
+
   }finally{
+
     button.disabled=false;
-    button.textContent="حفظ كلمة المرور الجديدة";
   }
 }
 
 /* تسجيل الخروج */
+
 async function logoutAccount(){
+
   try{
+
     const result=await client.auth.signOut();
+
     if(result.error)throw result.error;
+
+    profileLoadVersion++;
 
     currentUser=null;
     currentProfile=null;
     recoveryMode=false;
 
+    $("adminListings").innerHTML="";
+    $("pendingCount").textContent="0";
+
     showAccountState();
 
     setMessage($("authMessage"),"تم تسجيل الخروج بنجاح.","success");
+
   }catch(error){
-    console.error("Logout error:",error);
+
     setMessage(providerMessage,"تعذر تسجيل الخروج: "+error.message,"error");
   }
 }
 
-/* إظهار وإخفاء كلمات المرور */
+/* أزرار كلمات المرور */
+
 document.querySelectorAll("[data-toggle-password]").forEach(button=>{
+
   button.addEventListener("click",()=>{
+
     const input=$(button.dataset.togglePassword);
     if(!input)return;
 
     const visible=input.type==="password";
+
     input.type=visible?"text":"password";
     button.textContent=visible?"إخفاء":"إظهار";
-    button.setAttribute(
-      "aria-label",
-      visible?"إخفاء كلمة المرور":"إظهار كلمة المرور"
-    );
   });
 });
 
@@ -1124,32 +1190,35 @@ $("forgotPasswordButton").addEventListener("click",requestPasswordRecovery);
 $("saveNewPasswordButton").addEventListener("click",saveNewPassword);
 $("logoutButton").addEventListener("click",logoutAccount);
 
-/* عرض الإعلانات */
+/* البحث والتصنيف */
+
 function matchesKind(item,kind){
+
   if(kind==="all")return true;
 
-  const text=itemSearchText(item);
+  const t=itemSearchText(item);
 
   if(kind==="land"){
-    return /ارض|اراضي|قطعه ارض|مخطط|land|plot/.test(text);
+    return /ارض|اراضي|قطعه ارض|مخطط|land|plot/.test(t);
   }
 
   if(kind==="home"){
-    return /منزل|بيت|شقه|فيلا|سكن|عقار سكن|house|home|apartment|villa/.test(text);
+    return /منزل|بيت|شقه|فيلا|سكن|عقار سكن|house|home|apartment|villa/.test(t);
   }
 
   if(kind==="contracting"){
-    return /مقاول|مقاولات|بناء|انشاء|تنفيذ|ترميم|تشطيب|construction|contracting/.test(text);
+    return /مقاول|مقاولات|بناء|انشاء|تنفيذ|ترميم|تشطيب|construction|contracting/.test(t);
   }
 
   if(kind==="engineering"){
-    return /هندس|استشار|مساح|تصميم|مخططات|اشراف هندسي|engineering|consulting|survey/.test(text);
+    return /هندس|استشار|مساح|تصميم|مخططات|اشراف هندسي|engineering|consulting|survey/.test(t);
   }
 
   return true;
 }
 
 function matchesArea(item,area){
+
   if(area==="all")return true;
 
   const location=normalizeArabic([
@@ -1166,7 +1235,10 @@ function matchesArea(item,area){
   return location.includes(normalizeArabic(area));
 }
 
+/* عرض الإعلانات */
+
 function renderListings(items){
+
   listingsElement.innerHTML="";
 
   if(!items.length){
@@ -1176,6 +1248,7 @@ function renderListings(items){
   }
 
   items.forEach(item=>{
+
     const card=document.createElement("article");
     card.className="card";
 
@@ -1183,11 +1256,13 @@ function renderListings(items){
     const firstImage=images[0];
 
     if(firstImage){
+
       const img=document.createElement("img");
       img.className="listing-image";
       img.src=firstImage.image_url;
-      img.alt=safeText(item.title||"صورة الإعلان");
+      img.alt=item.title||"صورة الإعلان";
       img.loading="lazy";
+
       card.appendChild(img);
     }
 
@@ -1208,36 +1283,47 @@ function renderListings(items){
     card.appendChild(location);
 
     if(item.price!==null&&item.price!==undefined&&item.price!==""){
+
       const price=document.createElement("p");
       price.className="price";
-      price.textContent="السعر: "+Number(item.price).toLocaleString("en-US")+" "+(item.currency||"YER");
+
+      price.textContent=
+        "السعر: "+Number(item.price).toLocaleString("en-US")+
+        " "+(item.currency||"YER");
+
       card.appendChild(price);
     }
 
     const phone=normalizePhone(item.whatsapp||item.phone);
 
     if(phone){
+
       const whatsapp=document.createElement("a");
       whatsapp.className="action";
       whatsapp.href="https://wa.me/"+phone;
       whatsapp.target="_blank";
       whatsapp.rel="noopener noreferrer";
       whatsapp.textContent="تواصل عبر واتساب";
+
       card.appendChild(whatsapp);
     }
 
     if(item.phone){
+
       const call=document.createElement("a");
       call.className="action";
       call.href="tel:"+String(item.phone).replace(/[^\d+]/g,"");
       call.textContent="اتصال هاتفي";
+
       card.appendChild(call);
     }
 
     if(images.length>1){
+
       const count=document.createElement("p");
       count.className="status";
       count.textContent="عدد الصور: "+images.length;
+
       card.appendChild(count);
     }
 
@@ -1246,6 +1332,7 @@ function renderListings(items){
 }
 
 function applySearch(){
+
   const kind=$("kind").value;
   const area=$("area").value;
 
@@ -1260,26 +1347,20 @@ function applySearch(){
 }
 
 async function loadListings(){
+
   if(!client){
-    messageElement.textContent="الاتصال بقاعدة البيانات غير جاهز.";
+    messageElement.textContent="الاتصال غير جاهز.";
     return;
   }
 
   messageElement.textContent="جارٍ تحميل الإعلانات...";
 
   try{
+
     const result=await client.from("service_listings")
       .select(`
-        id,
-        title,
-        description,
-        address,
-        service_area,
-        phone,
-        whatsapp,
-        price,
-        currency,
-        created_at,
+        id,title,description,address,service_area,
+        phone,whatsapp,price,currency,created_at,
         service_categories(name),
         listing_images(image_url,sort_order)
       `)
@@ -1290,23 +1371,279 @@ async function loadListings(){
     if(result.error)throw result.error;
 
     allListings=result.data||[];
+
     applySearch();
+
   }catch(error){
+
     console.error("Loading error:",error);
 
     listingsElement.innerHTML=
-      '<div class="card empty-state">تعذر تحميل الإعلانات من قاعدة البيانات.<p class="note">'+safeText(error.message)+'</p></div>';
+      '<div class="card empty-state">تعذر تحميل الإعلانات.<p class="note">'+safeText(error.message)+'</p></div>';
 
-    messageElement.textContent="فشل تحميل الإعلانات. تحقق من الاتصال.";
+    messageElement.textContent="فشل تحميل الإعلانات.";
   }
 }
 
-/* رفع صور الإعلان وتسجيل روابطها */
+/* لوحة الإدارة */
+
+/*
+  لا نعتمد على البريد الإلكتروني.
+  الصلاحية تقرأ من ملف المستخدم في profiles.
+*/
+
+async function loadAdminListings(){
+
+  const container=$("adminListings");
+
+  if(!currentUser||currentProfile?.role!=="admin"){
+    container.innerHTML="";
+    return;
+  }
+
+  container.innerHTML=
+    '<div class="card">جارٍ تحميل الإعلانات قيد المراجعة...</div>';
+
+  try{
+
+    const result=await client
+      .from("service_listings")
+      .select(`
+        id,
+        title,
+        description,
+        address,
+        service_area,
+        phone,
+        whatsapp,
+        price,
+        currency,
+        status,
+        created_at,
+        service_categories(name),
+        listing_images(image_url,sort_order)
+      `)
+      .eq("status","pending")
+      .order("created_at",{ascending:false});
+
+    if(result.error)throw result.error;
+
+    const items=result.data||[];
+
+    $("pendingCount").textContent=items.length;
+    container.innerHTML="";
+
+    if(!items.length){
+
+      container.innerHTML=
+        '<div class="card empty-state">لا توجد إعلانات بانتظار المراجعة حاليًا.</div>';
+
+      return;
+    }
+
+    items.forEach(item=>{
+
+      const card=document.createElement("article");
+      card.className="card admin-card";
+
+      const title=document.createElement("h3");
+      title.textContent=item.title||"إعلان بدون عنوان";
+      card.appendChild(title);
+
+      const category=document.createElement("p");
+      category.textContent="القسم: "+getCategory(item);
+      card.appendChild(category);
+
+      const description=document.createElement("p");
+      description.textContent=item.description||"";
+      card.appendChild(description);
+
+      const location=document.createElement("p");
+      location.textContent=
+        "الموقع: "+(item.address||item.service_area||"غير محدد");
+      card.appendChild(location);
+
+      const phone=document.createElement("p");
+      phone.textContent="رقم التواصل: "+(item.phone||"غير محدد");
+      card.appendChild(phone);
+
+      if(item.price!==null&&item.price!==undefined){
+
+        const price=document.createElement("p");
+        price.textContent=
+          "السعر: "+item.price+" "+(item.currency||"YER");
+
+        card.appendChild(price);
+      }
+
+      const date=document.createElement("p");
+      date.className="admin-date";
+      date.textContent="تاريخ الإضافة: "+
+        (item.created_at
+          ?new Date(item.created_at).toLocaleString("ar")
+          :"غير متوفر");
+
+      card.appendChild(date);
+
+      const images=getImages(item);
+
+      if(images.length){
+
+        images.forEach(image=>{
+
+          const img=document.createElement("img");
+          img.className="listing-image";
+          img.src=image.image_url;
+          img.alt="صورة الإعلان";
+          img.loading="lazy";
+
+          card.appendChild(img);
+        });
+
+      }else{
+
+        const noImages=document.createElement("p");
+        noImages.className="note";
+        noImages.textContent="لا توجد صور مرفقة.";
+        card.appendChild(noImages);
+      }
+
+      const actions=document.createElement("div");
+      actions.className="admin-actions";
+
+      const approve=document.createElement("button");
+      approve.type="button";
+      approve.textContent="✓ الموافقة والنشر";
+      approve.className="approve-button";
+      approve.dataset.adminAction="published";
+      approve.dataset.listingId=item.id;
+
+      const reject=document.createElement("button");
+      reject.type="button";
+      reject.textContent="✕ رفض الإعلان";
+      reject.className="reject-button";
+      reject.dataset.adminAction="rejected";
+      reject.dataset.listingId=item.id;
+
+      actions.appendChild(approve);
+      actions.appendChild(reject);
+
+      card.appendChild(actions);
+      container.appendChild(card);
+    });
+
+  }catch(error){
+
+    console.error("Admin listings error:",error);
+
+    container.innerHTML=
+      '<div class="card error">تعذر تحميل الإعلانات: '+
+      safeText(error.message)+
+      '</div>';
+
+    setMessage(
+      $("adminMessage"),
+      "تحقق من صلاحيات قراءة الإعلانات المعلقة في Supabase: "+error.message,
+      "error"
+    );
+  }
+}
+
+/* قبول الإعلان أو رفضه */
+
+async function reviewListing(id,status,button){
+
+  if(!currentUser||currentProfile?.role!=="admin"){
+
+    setMessage(
+      $("adminMessage"),
+      "ليس لديك صلاحية مراجعة الإعلانات.",
+      "error"
+    );
+
+    return;
+  }
+
+  const approved=status==="published";
+
+  if(!confirm(
+    approved
+      ?"هل تريد الموافقة على الإعلان ونشره؟"
+      :"هل تريد رفض هذا الإعلان؟"
+  )){
+    return;
+  }
+
+  button.disabled=true;
+
+  try{
+
+    const result=await client
+      .from("service_listings")
+      .update({
+        status:status,
+        is_active:approved
+      })
+      .eq("id",id)
+      .eq("status","pending")
+      .select("id,status")
+      .single();
+
+    if(result.error)throw result.error;
+
+    setMessage(
+      $("adminMessage"),
+      approved
+        ?"تمت الموافقة على الإعلان ونشره بنجاح."
+        :"تم رفض الإعلان بنجاح.",
+      "success"
+    );
+
+    await loadAdminListings();
+    await loadListings();
+
+  }catch(error){
+
+    console.error("Review error:",error);
+
+    setMessage(
+      $("adminMessage"),
+      "تعذر تنفيذ القرار: "+error.message+
+      "\nقد تكون المشكلة في سياسة RLS أو وظيفة الحماية في قاعدة البيانات.",
+      "error"
+    );
+
+    button.disabled=false;
+  }
+}
+
+$("adminListings").addEventListener("click",event=>{
+
+  const button=event.target.closest("[data-admin-action]");
+
+  if(!button)return;
+
+  reviewListing(
+    button.dataset.listingId,
+    button.dataset.adminAction,
+    button
+  );
+});
+
+$("refreshAdminButton").addEventListener(
+  "click",
+  loadAdminListings
+);
+
+/* رفع الصور */
+
 async function uploadListingImages(files,listingId,userId){
+
   const rows=[];
   const errors=[];
 
   for(let i=0;i<files.length;i++){
+
     const file=files[i];
 
     const extension=
@@ -1314,9 +1651,11 @@ async function uploadListingImages(files,listingId,userId){
       file.type==="image/webp"?"webp":"jpg";
 
     const path=
-      userId+"/"+listingId+"/"+Date.now()+"_"+i+"_"+safeFileName(file.name||("image."+extension));
+      userId+"/"+listingId+"/"+Date.now()+"_"+i+
+      "_"+safeFileName(file.name||("image."+extension));
 
     try{
+
       const upload=await client.storage
         .from("listing-images")
         .upload(path,file,{
@@ -1347,6 +1686,7 @@ async function uploadListingImages(files,listingId,userId){
       });
 
     }catch(error){
+
       errors.push(file.name+": "+error.message);
     }
   }
@@ -1354,36 +1694,37 @@ async function uploadListingImages(files,listingId,userId){
   let uploaded=0;
 
   if(rows.length){
+
     try{
+
       const inserted=await client
         .from("listing_images")
         .insert(rows);
 
       if(inserted.error){
+
         errors.push(
-          "تعذر تسجيل روابط الصور في قاعدة البيانات: "+
-          inserted.error.message
+          "تعذر تسجيل روابط الصور: "+inserted.error.message
         );
+
       }else{
+
         uploaded=rows.length;
       }
 
     }catch(error){
-      errors.push(
-        "حدث خطأ أثناء تسجيل روابط الصور: "+
-        error.message
-      );
+
+      errors.push("خطأ في تسجيل روابط الصور: "+error.message);
     }
   }
 
-  return {
-    uploaded,
-    errors
-  };
+  return {uploaded,errors};
 }
 
 /* حفظ الإعلان */
+
 async function submitListing(event){
+
   event.preventDefault();
 
   if(!currentUser){
@@ -1393,9 +1734,7 @@ async function submitListing(event){
 
   if(!providerForm.reportValidity())return;
 
-  /* نأخذ نسخة من الصور المختارة قبل بدء الحفظ */
   const files=selectedImageFiles();
-
   const imageError=validateImages(files);
 
   if(imageError){
@@ -1414,11 +1753,12 @@ async function submitListing(event){
   const normalized=normalizePhone(phone);
 
   if(!normalized){
-    setMessage(providerMessage,"يرجى إدخال رقم هاتف صحيح مع مفتاح الدولة عند الحاجة.","error");
+    setMessage(providerMessage,"يرجى إدخال رقم هاتف صحيح.","error");
     return;
   }
 
   const priceInfo=parsePrice($("providerPrice").value);
+
   let description=$("providerDescription").value.trim();
 
   if(priceInfo.note){
@@ -1448,8 +1788,9 @@ async function submitListing(event){
   );
 
   try{
-    /* أولًا: حفظ الإعلان */
-    const inserted=await client.from("service_listings")
+
+    const inserted=await client
+      .from("service_listings")
       .insert(payload)
       .select("id")
       .single();
@@ -1458,13 +1799,10 @@ async function submitListing(event){
 
     const listingId=inserted.data.id;
 
-    /* ثانيًا: رفع الصور وتسجيل روابطها */
-    let imageResult={
-      uploaded:0,
-      errors:[]
-    };
+    let imageResult={uploaded:0,errors:[]};
 
     if(files.length){
+
       imageResult=await uploadListingImages(
         files,
         listingId,
@@ -1472,53 +1810,54 @@ async function submitListing(event){
       );
     }
 
-    /* ثالثًا: تفريغ النموذج والصور بعد الحفظ */
     providerForm.reset();
     clearSelectedImages();
 
     $("providerName").value=currentProfile?.full_name||"";
     $("providerPhone").value=currentProfile?.phone||phone;
 
-    /* رابعًا: إظهار نتيجة الرفع بدقة */
     if(imageResult.errors.length){
+
       setMessage(
         providerMessage,
-        "تم حفظ الإعلان وهو الآن قيد مراجعة الإدارة.\n"+
-        "تم تسجيل "+imageResult.uploaded+" من "+files.length+" صورة بنجاح.\n"+
-        "ملاحظات الصور: "+imageResult.errors.join(" | "),
+        "تم حفظ الإعلان وهو قيد مراجعة الإدارة.\n"+
+        "تم تسجيل "+imageResult.uploaded+" من "+files.length+" صورة.\n"+
+        imageResult.errors.join(" | "),
         "error"
       );
+
     }else{
+
       setMessage(
         providerMessage,
-        "تم حفظ إعلانك بنجاح"+
-        (files.length
-          ?" وتسجيل "+imageResult.uploaded+" صورة"
-          :" بدون صور"
-        )+
-        ".\nحالة الإعلان: قيد مراجعة الإدارة. لن يظهر للزوار إلا بعد الموافقة عليه.",
+        "تم حفظ إعلانك بنجاح وتسجيل "+imageResult.uploaded+
+        " صورة.\nحالة الإعلان: قيد مراجعة الإدارة.",
         "success"
       );
     }
 
   }catch(error){
+
     console.error("Submit listing error:",error);
 
     setMessage(
       providerMessage,
       "تعذر حفظ الإعلان: "+error.message+
-      "\nلم يتم تأكيد حفظ الطلب. يرجى مراجعة الإدارة أو المحاولة مرة أخرى.",
+      "\nلم يتم تأكيد حفظ الطلب.",
       "error"
     );
 
   }finally{
+
     button.disabled=false;
     button.textContent="حفظ الإعلان وإرسال الصور للمراجعة";
   }
 }
 
 /* أزرار التنقل */
+
 modeToggle.addEventListener("click",()=>{
+
   setMode(currentMode==="search"?"provider":"search");
 
   $("explore").scrollIntoView({
@@ -1528,7 +1867,9 @@ modeToggle.addEventListener("click",()=>{
 });
 
 document.querySelectorAll(".category-card[data-kind]").forEach(card=>{
+
   card.addEventListener("click",()=>{
+
     const kind=card.dataset.kind;
 
     if(currentMode==="provider"){
@@ -1549,6 +1890,7 @@ document.querySelectorAll(".category-card[data-kind]").forEach(card=>{
 $("searchButton").addEventListener("click",applySearch);
 
 $("cancelProvider").addEventListener("click",()=>{
+
   setMode("search");
 
   $("explore").scrollIntoView({
@@ -1559,10 +1901,15 @@ $("cancelProvider").addEventListener("click",()=>{
 
 providerForm.addEventListener("submit",submitListing);
 
-/* تشغيل المنصة ومراقبة أحداث المصادقة */
+/* تشغيل المنصة */
+
 async function initialize(){
+
   if(!window.supabase){
-    messageElement.textContent="تعذر تحميل مكتبة الاتصال. تحقق من الإنترنت.";
+
+    messageElement.textContent=
+      "تعذر تحميل مكتبة الاتصال. تحقق من الإنترنت.";
+
     return;
   }
 
@@ -1571,35 +1918,31 @@ async function initialize(){
     SUPABASE_PUBLISHABLE_KEY
   );
 
-  /* مراقبة استعادة كلمة المرور فور إنشاء الاتصال */
+  /*
+    مراقبة جلسة المصادقة.
+    لا نمنح صلاحية المدير هنا.
+    يتم التحقق من role في profiles.
+  */
+
   client.auth.onAuthStateChange((event,session)=>{
+
     if(event==="PASSWORD_RECOVERY"){
       showRecoveryPanel();
       return;
     }
 
-    currentUser=session?.user||null;
+    if(!session?.user){
 
-    if(!currentUser){
+      profileLoadVersion++;
+      currentUser=null;
       currentProfile=null;
+
       showAccountState();
-    }else{
-      setTimeout(async()=>{
-        const userId=currentUser?.id;
-        if(!userId)return;
 
-        try{
-          const profile=await ensureProfile(currentUser);
-
-          if(currentUser?.id===userId){
-            currentProfile=profile;
-            showAccountState();
-          }
-        }catch(error){
-          console.error("Profile event error:",error);
-        }
-      },0);
+      return;
     }
+
+    handleSession(session);
   });
 
   await loadListings();
@@ -1607,14 +1950,23 @@ async function initialize(){
   const sessionResult=await client.auth.getSession();
 
   if(sessionResult.error){
+
     console.error("Session error:",sessionResult.error);
+
+    messageElement.textContent=
+      "تعذر استعادة جلسة الدخول.";
   }
 
   if(!recoveryMode){
+
     await handleSession(sessionResult.data?.session);
+
     setMode("search");
+
   }else{
+
     setMode("provider");
+
     $("recoveryPanel").classList.remove("hidden");
   }
 }
