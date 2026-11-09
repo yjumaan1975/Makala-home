@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -509,6 +508,7 @@ let currentMode="search";
 let currentUser=null;
 let currentProfile=null;
 let previewObjectUrls=[];
+let selectedFiles=[];
 let recoveryMode=false;
 
 /* أدوات عامة */
@@ -596,18 +596,31 @@ function safeFileName(name){
 }
 
 /* الصور والمعاينة */
+
+/* إفراغ المعاينة وإلغاء روابط الصور المؤقتة */
 function clearImagePreview(){
   previewObjectUrls.forEach(url=>URL.revokeObjectURL(url));
   previewObjectUrls=[];
   imagePreview.innerHTML="";
 }
 
-function selectedImageFiles(){
-  return Array.from(providerImages.files||[]);
+/* إفراغ قائمة الصور عند انتهاء الإعلان */
+function clearSelectedImages(){
+  selectedFiles=[];
+  providerImages.value="";
+  clearImagePreview();
 }
 
+/* إرجاع الصور المختارة من القائمة المحفوظة */
+function selectedImageFiles(){
+  return [...selectedFiles];
+}
+
+/* فحص عدد الصور وحجمها وصيغها */
 function validateImages(files){
-  if(files.length>10)return "الحد الأقصى هو 10 صور للإعلان.";
+  if(files.length>10){
+    return "الحد الأقصى هو 10 صور للإعلان.";
+  }
 
   for(const file of files){
     if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
@@ -622,32 +635,65 @@ function validateImages(files){
   return "";
 }
 
-providerImages.addEventListener("change",()=>{
+/* إعادة رسم معاينة جميع الصور المختارة */
+function renderImagePreview(){
   clearImagePreview();
 
-  const files=selectedImageFiles();
-  const error=validateImages(files);
-
-  if(error){
-    providerImages.value="";
-    setMessage(providerMessage,error,"error");
-    return;
-  }
-
-  files.forEach(file=>{
+  selectedFiles.forEach((file,index)=>{
     const url=URL.createObjectURL(file);
     previewObjectUrls.push(url);
 
     const img=document.createElement("img");
     img.src=url;
-    img.alt=file.name;
+    img.alt="الصورة رقم "+(index+1);
+
     imagePreview.appendChild(img);
   });
 
   setMessage(
     providerMessage,
-    files.length?"تم اختيار "+files.length+" صورة. سيتم رفعها عند حفظ الإعلان.":""
+    selectedFiles.length
+      ?"تم اختيار "+selectedFiles.length+" صور. يمكنك إضافة المزيد حتى 10 صور."
+      :"لم يتم اختيار صور بعد."
   );
+}
+
+/*
+  عند اختيار صور جديدة:
+  نضيفها إلى الصور السابقة بدل استبدالها.
+  ثم نفرغ حقل الهاتف مع الاحتفاظ بالملفات في selectedFiles.
+*/
+providerImages.addEventListener("change",()=>{
+  const newFiles=Array.from(providerImages.files||[]);
+
+  /* إفراغ حقل الاختيار مع الاحتفاظ بالصور في القائمة */
+  providerImages.value="";
+
+  if(!newFiles.length)return;
+
+  const combined=[...selectedFiles];
+
+  newFiles.forEach(file=>{
+    const exists=combined.some(existing=>
+      existing.name===file.name &&
+      existing.size===file.size &&
+      existing.lastModified===file.lastModified
+    );
+
+    if(!exists){
+      combined.push(file);
+    }
+  });
+
+  const error=validateImages(combined);
+
+  if(error){
+    setMessage(providerMessage,error,"error");
+    return;
+  }
+
+  selectedFiles=combined;
+  renderImagePreview();
 });
 
 /* التبديل بين البحث وعرض الخدمة */
@@ -1255,7 +1301,7 @@ async function loadListings(){
   }
 }
 
-/* رفع صور الإعلان */
+/* رفع صور الإعلان وتسجيل روابطها */
 async function uploadListingImages(files,listingId,userId){
   const rows=[];
   const errors=[];
@@ -1270,44 +1316,68 @@ async function uploadListingImages(files,listingId,userId){
     const path=
       userId+"/"+listingId+"/"+Date.now()+"_"+i+"_"+safeFileName(file.name||("image."+extension));
 
-    const upload=await client.storage.from("listing-images").upload(path,file,{
-      contentType:file.type,
-      upsert:false
-    });
+    try{
+      const upload=await client.storage
+        .from("listing-images")
+        .upload(path,file,{
+          contentType:file.type,
+          upsert:false
+        });
 
-    if(upload.error){
-      errors.push(file.name+": "+upload.error.message);
-      continue;
+      if(upload.error){
+        errors.push(file.name+": "+upload.error.message);
+        continue;
+      }
+
+      const publicResult=client.storage
+        .from("listing-images")
+        .getPublicUrl(path);
+
+      const url=publicResult.data?.publicUrl;
+
+      if(!url){
+        errors.push(file.name+": تعذر إنشاء رابط الصورة.");
+        continue;
+      }
+
+      rows.push({
+        listing_id:listingId,
+        image_url:url,
+        sort_order:i
+      });
+
+    }catch(error){
+      errors.push(file.name+": "+error.message);
     }
-
-    const publicResult=client.storage
-      .from("listing-images")
-      .getPublicUrl(path);
-
-    const url=publicResult.data?.publicUrl;
-
-    if(!url){
-      errors.push(file.name+": تعذر إنشاء رابط الصورة.");
-      continue;
-    }
-
-    rows.push({
-      listing_id:listingId,
-      image_url:url,
-      sort_order:i
-    });
   }
 
-  if(rows.length){
-    const inserted=await client.from("listing_images").insert(rows);
+  let uploaded=0;
 
-    if(inserted.error){
-      errors.push("تعذر تسجيل روابط الصور: "+inserted.error.message);
+  if(rows.length){
+    try{
+      const inserted=await client
+        .from("listing_images")
+        .insert(rows);
+
+      if(inserted.error){
+        errors.push(
+          "تعذر تسجيل روابط الصور في قاعدة البيانات: "+
+          inserted.error.message
+        );
+      }else{
+        uploaded=rows.length;
+      }
+
+    }catch(error){
+      errors.push(
+        "حدث خطأ أثناء تسجيل روابط الصور: "+
+        error.message
+      );
     }
   }
 
   return {
-    uploaded:rows.length,
+    uploaded,
     errors
   };
 }
@@ -1323,7 +1393,9 @@ async function submitListing(event){
 
   if(!providerForm.reportValidity())return;
 
+  /* نأخذ نسخة من الصور المختارة قبل بدء الحفظ */
   const files=selectedImageFiles();
+
   const imageError=validateImages(files);
 
   if(imageError){
@@ -1370,9 +1442,13 @@ async function submitListing(event){
   button.disabled=true;
   button.textContent="جارٍ حفظ الإعلان ورفع الصور...";
 
-  setMessage(providerMessage,"جارٍ حفظ الإعلان. يرجى عدم إغلاق الصفحة.");
+  setMessage(
+    providerMessage,
+    "جارٍ حفظ الإعلان ورفع الصور. يرجى عدم إغلاق الصفحة."
+  );
 
   try{
+    /* أولًا: حفظ الإعلان */
     const inserted=await client.from("service_listings")
       .insert(payload)
       .select("id")
@@ -1381,7 +1457,12 @@ async function submitListing(event){
     if(inserted.error)throw inserted.error;
 
     const listingId=inserted.data.id;
-    let imageResult={uploaded:0,errors:[]};
+
+    /* ثانيًا: رفع الصور وتسجيل روابطها */
+    let imageResult={
+      uploaded:0,
+      errors:[]
+    };
 
     if(files.length){
       imageResult=await uploadListingImages(
@@ -1391,33 +1472,45 @@ async function submitListing(event){
       );
     }
 
+    /* ثالثًا: تفريغ النموذج والصور بعد الحفظ */
     providerForm.reset();
-    clearImagePreview();
+    clearSelectedImages();
 
     $("providerName").value=currentProfile?.full_name||"";
     $("providerPhone").value=currentProfile?.phone||phone;
 
+    /* رابعًا: إظهار نتيجة الرفع بدقة */
     if(imageResult.errors.length){
       setMessage(
         providerMessage,
-        "تم حفظ الإعلان وهو الآن قيد مراجعة الإدارة.\nتم رفع "+imageResult.uploaded+" من "+files.length+" صورة.\nملاحظات الصور: "+imageResult.errors.join(" | "),
+        "تم حفظ الإعلان وهو الآن قيد مراجعة الإدارة.\n"+
+        "تم تسجيل "+imageResult.uploaded+" من "+files.length+" صورة بنجاح.\n"+
+        "ملاحظات الصور: "+imageResult.errors.join(" | "),
         "error"
       );
     }else{
       setMessage(
         providerMessage,
-        "تم حفظ إعلانك بنجاح"+(files.length?" ورفع "+imageResult.uploaded+" صورة":" بدون صور")+".\nحالة الإعلان: قيد مراجعة الإدارة. لن يظهر للزوار إلا بعد الموافقة عليه.",
+        "تم حفظ إعلانك بنجاح"+
+        (files.length
+          ?" وتسجيل "+imageResult.uploaded+" صورة"
+          :" بدون صور"
+        )+
+        ".\nحالة الإعلان: قيد مراجعة الإدارة. لن يظهر للزوار إلا بعد الموافقة عليه.",
         "success"
       );
     }
+
   }catch(error){
     console.error("Submit listing error:",error);
 
     setMessage(
       providerMessage,
-      "تعذر حفظ الإعلان: "+error.message+"\nلم يتم تأكيد حفظ الطلب. يرجى مراجعة الإدارة أو المحاولة مرة أخرى.",
+      "تعذر حفظ الإعلان: "+error.message+
+      "\nلم يتم تأكيد حفظ الطلب. يرجى مراجعة الإدارة أو المحاولة مرة أخرى.",
       "error"
     );
+
   }finally{
     button.disabled=false;
     button.textContent="حفظ الإعلان وإرسال الصور للمراجعة";
